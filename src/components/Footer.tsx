@@ -290,12 +290,12 @@ const Footer = () => {
               <a href="#datenschutz" className="hover:text-white transition-colors">Datenschutz</a>
               <a href="#agb" className="hover:text-white transition-colors">AGB</a>
             </div>
-            <div className="text-sm text-gray-400">
-              <div className="flex items-center space-x-2">
+            <div className="text-sm text-gray-400 text-center md:text-left">
+              <div className="flex flex-col items-center md:flex-row md:items-center md:justify-start space-y-1 md:space-y-0 md:space-x-2">
                 <Shield className="w-4 h-4 text-green-400" />
                 <span>© 2025 Messie-Wohnungen24.de - Alle Rechte vorbehalten</span>
               </div>
-              <div className="text-xs text-gray-500 mt-1">
+              <div className="text-xs text-gray-500 mt-1 text-center md:text-left">
                 Zertifiziert • Versichert • DSGVO-konform
               </div>
             </div>

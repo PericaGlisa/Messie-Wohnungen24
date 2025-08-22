@@ -69,9 +69,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
             {/* Company Info */}
-            <div className="md:col-span-1">
+            <div className="sm:col-span-2 lg:col-span-1">
               <a href="#start" className="flex items-center mb-4 hover:opacity-80 transition-opacity duration-200">
                 <img 
                   src="/MessieLogo.png" 

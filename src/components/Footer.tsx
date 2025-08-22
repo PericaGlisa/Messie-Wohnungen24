@@ -1,0 +1,344 @@
+import React, { useState } from 'react';
+import { Phone, Mail, MapPin, MessageCircle, Shield, CheckCircle, Star, Clock, Users, Award, ArrowUp } from 'lucide-react';
+
+const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle newsletter signup
+    console.log('Newsletter signup:', email);
+    setEmail('');
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 100); // Lower threshold for easier testing
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <footer className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white py-12 relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)',
+          backgroundSize: '20px 20px'
+        }}></div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10">
+          {/* Trust & Stats Banner */}
+          <div className="bg-gradient-to-r from-blue-600/20 to-green-600/20 p-6 rounded-lg mb-8 border border-blue-500/30">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="flex items-center justify-center space-x-2">
+                <Users className="w-5 h-5 text-blue-400" />
+                <div>
+                  <div className="text-xl font-bold text-white">500+</div>
+                  <div className="text-xs text-gray-300">Zufriedene Kunden</div>
+                </div>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <Star className="w-5 h-5 text-yellow-400" />
+                <div>
+                  <div className="text-xl font-bold text-white">4.9/5</div>
+                  <div className="text-xs text-gray-300">Kundenbewertung</div>
+                </div>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <Award className="w-5 h-5 text-green-400" />
+                <div>
+                  <div className="text-xl font-bold text-white">15+</div>
+                  <div className="text-xs text-gray-300">Jahre Erfahrung</div>
+                </div>
+              </div>
+              <div className="flex items-center justify-center space-x-2">
+                <Shield className="w-5 h-5 text-blue-400" />
+                <div>
+                  <div className="text-xl font-bold text-white">100%</div>
+                  <div className="text-xs text-gray-300">Diskret & Sicher</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+            {/* Company Info */}
+            <div className="md:col-span-1">
+              <a href="#start" className="flex items-center mb-4 hover:opacity-80 transition-opacity duration-200">
+                <img 
+                  src="/MessieLogo.png" 
+                  alt="Messie-Wohnungen24" 
+                  className="h-14 w-auto mr-3"
+                />
+                <span className="text-lg font-bold text-blue-600">Messie-Wohnungen24</span>
+              </a>
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                Professionelle, diskrete Entrümpelung von Messie-Wohnungen. 
+                Wir helfen mit Verständnis und ohne Vorurteile.
+              </p>
+              
+              {/* Certifications */}
+              <div className="space-y-2">
+                <h4 className="text-sm font-semibold text-white mb-2">Zertifizierungen</h4>
+                <div className="flex items-center space-x-2 text-xs text-gray-300">
+                  <CheckCircle className="w-3 h-3 text-green-400" />
+                  <span>Vollversichert</span>
+                </div>
+                <div className="flex items-center space-x-2 text-xs text-gray-300">
+                  <CheckCircle className="w-3 h-3 text-green-400" />
+                  <span>DSGVO-konform</span>
+                </div>
+                <div className="flex items-center space-x-2 text-xs text-gray-300">
+                  <CheckCircle className="w-3 h-3 text-green-400" />
+                  <span>Umweltschutz</span>
+                </div>
+              </div>
+            </div>
+
+          {/* Quick Links */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-white">Navigation</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#start" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Start</span></a></li>
+                <li><a href="#leistungen" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Unsere Leistungen</span></a></li>
+              </ul>
+
+            </div>
+
+            {/* Service Highlights */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-white">Unsere Stärken</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center space-x-2 text-gray-300">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>24h Reaktionszeit</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-300">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Diskrete Abwicklung</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-300">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Umweltgerechte Entsorgung</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-300">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Kostenlose Beratung</span>
+                </div>
+                <div className="flex items-center space-x-2 text-gray-300">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>Deutschlandweiter Service</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Service Areas */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-white">Servicegebiete</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li className="flex items-center space-x-2">
+                  <MapPin className="w-3 h-3 text-blue-400" />
+                  <span>Nordrhein-Westfalen</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <MapPin className="w-3 h-3 text-blue-400" />
+                  <span>Hessen</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <MapPin className="w-3 h-3 text-blue-400" />
+                  <span>Rheinland-Pfalz</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <MapPin className="w-3 h-3 text-blue-400" />
+                  <span>Baden-Württemberg</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <MapPin className="w-3 h-3 text-blue-400" />
+                  <span>Niedersachsen</span>
+                </li>
+                <li className="flex items-center space-x-2 text-blue-400 font-semibold">
+                  <MapPin className="w-3 h-3" />
+                  <span>+ weitere Bundesländer</span>
+                </li>
+              </ul>
+              
+              {/* Newsletter Signup */}
+              <div className="mt-6">
+                <h4 className="text-sm font-semibold text-white mb-2">Newsletter</h4>
+                <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Ihre E-Mail"
+                    className="w-full px-3 py-2 bg-gray-700 text-white text-sm rounded border border-gray-600 focus:border-blue-400 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white px-3 py-2 text-sm rounded hover:bg-blue-700 transition-colors"
+                  >
+                    Anmelden
+                  </button>
+                </form>
+                <p className="text-xs text-gray-400 mt-1">Tipps & Neuigkeiten</p>
+              </div>
+            </div>
+
+            {/* Enhanced Contact */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-white">Notfall-Kontakt</h3>
+              
+              {/* Operating Hours */}
+              <div className="bg-gray-700/50 p-3 rounded-lg mb-4">
+                <div className="flex items-center space-x-2 mb-2">
+                  <Clock className="w-4 h-4 text-green-400" />
+                  <span className="text-sm font-semibold text-white">Öffnungszeiten</span>
+                </div>
+                <div className="text-xs text-gray-300 space-y-1">
+                  <div>Mo-Sa: 8:00 - 20:00 Uhr</div>
+                  <div className="text-green-400">Notfälle: 24/7 verfügbar</div>
+                  <div className="text-blue-400">Reaktionszeit: &lt; 24h</div>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <Phone className="w-4 h-4 text-blue-600" />
+                  <div>
+                    <a href="tel:+4917670211430" className="text-gray-300 hover:text-white transition-colors font-semibold">
+                      +49 176 70211430
+                    </a>
+                    <div className="text-xs text-gray-400">Sofort-Hilfe</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MessageCircle className="w-4 h-4 text-green-400" />
+                  <div>
+                    <a 
+                      href="https://wa.me/4917670211430"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-white transition-colors font-semibold"
+                    >
+                      WhatsApp
+                    </a>
+                    <div className="text-xs text-gray-400">Diskret & schnell</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="w-4 h-4 text-blue-400" />
+                  <div>
+                    <a href="mailto:info@messie-wohnungen24.de" className="text-gray-300 hover:text-white transition-colors font-semibold">
+                      info@messie-wohnungen24.de
+                    </a>
+                    <div className="text-xs text-gray-400">Antwort &lt; 24h</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Customer Reviews Section */}
+        <div className="border-t border-gray-700 pt-8 mt-8">
+          <h3 className="text-lg font-semibold mb-6 text-white text-center">Was unsere Kunden sagen</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-700/30 p-4 rounded-lg">
+              <div className="flex items-center mb-2">
+                <div className="flex text-yellow-400">
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                </div>
+              </div>
+              <p className="text-sm text-gray-300 mb-2">"Sehr professionell und diskret. Die Wohnung wurde schnell und gründlich gereinigt."</p>
+              <p className="text-xs text-gray-400">- Maria K., Köln</p>
+            </div>
+            <div className="bg-gray-700/30 p-4 rounded-lg">
+              <div className="flex items-center mb-2">
+                <div className="flex text-yellow-400">
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                </div>
+              </div>
+              <p className="text-sm text-gray-300 mb-2">"Endlich jemand, der versteht und nicht verurteilt. Vielen Dank für die einfühlsame Hilfe."</p>
+              <p className="text-xs text-gray-400">- Thomas B., Frankfurt</p>
+            </div>
+            <div className="bg-gray-700/30 p-4 rounded-lg">
+              <div className="flex items-center mb-2">
+                <div className="flex text-yellow-400">
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                </div>
+              </div>
+              <p className="text-sm text-gray-300 mb-2">"Schnelle Reaktion, faire Preise und umweltgerechte Entsorgung. Absolut empfehlenswert!"</p>
+              <p className="text-xs text-gray-400">- Sandra M., Düsseldorf</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Enhanced Bottom Section */}
+        <div className="border-t border-gray-700 mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex space-x-6 text-sm text-gray-300 mb-4 md:mb-0">
+              <a href="#impressum" className="hover:text-white transition-colors">Impressum</a>
+              <a href="#datenschutz" className="hover:text-white transition-colors">Datenschutz</a>
+              <a href="#agb" className="hover:text-white transition-colors">AGB</a>
+            </div>
+            <div className="text-sm text-gray-400">
+              <div className="flex items-center space-x-2">
+                <Shield className="w-4 h-4 text-green-400" />
+                <span>© 2025 Messie-Wohnungen24.de - Alle Rechte vorbehalten</span>
+              </div>
+              <div className="text-xs text-gray-500 mt-1">
+                Zertifiziert • Versichert • DSGVO-konform
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 p-4 bg-gray-700 rounded-lg text-center">
+          <p className="text-sm text-gray-300">
+            <strong className="text-white">24/7 Diskretion garantiert</strong> - 
+            Wir verstehen Ihre Situation und helfen ohne Vorurteile
+          </p>
+        </div>
+        
+      </div>
+      
+      {/* Back to Top Button - Fixed Position (positioned above WhatsApp button) */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-20 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 group"
+          aria-label="Nach oben scrollen"
+        >
+          <ArrowUp className="w-6 h-6" />
+          <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            Nach oben
+            <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-800"></div>
+          </div>
+        </button>
+      )}
+    </footer>
+  );
+};
+
+export default Footer;

@@ -1,0 +1,162 @@
+import React, { useEffect, useState } from 'react';
+import { Phone, MessageCircle, Clock, Shield, Euro, Award, MapPin } from 'lucide-react';
+import { getOptimizedImageProps, progressiveLoader } from '../utils/performance';
+
+const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    setIsVisible(true);
+    
+    // Preload hero image with high priority using progressive loader
+    const heroImageSrc = '/images/high-angle-house-interior-with-clutter.webp';
+    progressiveLoader.loadImage(heroImageSrc, 'high')
+      .then(() => setImageLoaded(true))
+      .catch((error) => {
+        console.warn('Failed to load hero image:', error);
+        setImageLoaded(true); // Still show the component even if image fails
+      });
+    
+    // Optimized scroll handler with throttling
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <section id="start" className="relative bg-gradient-to-br from-blue-50 to-green-50 py-16 lg:py-24 overflow-hidden">
+      {/* Background Image with optimized loading */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/85 to-green-900/85 z-10"></div>
+        <div className="absolute inset-0 w-full h-full">
+          {imageLoaded && (
+            <img 
+              src="/images/high-angle-house-interior-with-clutter.webp" 
+              alt="Professionelle Entrümpelung" 
+              className="w-full h-full object-cover transition-opacity duration-500"
+              {...getOptimizedImageProps('/images/high-angle-house-interior-with-clutter.webp', 'high')}
+              style={{
+                transform: `translateY(${scrollY * 0.3}px)`,
+                willChange: 'transform'
+              }}
+            />
+          )}
+          {!imageLoaded && (
+            <div className="w-full h-full bg-gradient-to-br from-blue-200 to-green-200 animate-pulse"></div>
+          )}
+        </div>
+      </div>
+      
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          {/* Emergency Contact Banner with Vibration Effect */}
+          <div className="emergency-hotline bg-blue-600 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg mb-4 sm:mb-6 inline-flex items-center space-x-2 sm:space-x-3 shadow-lg hover:shadow-xl transition-all duration-300 max-w-full">
+            <div className="phone-icon flex-shrink-0">
+              <Phone className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </div>
+            <span className="font-semibold hotline-text text-xs sm:text-sm md:text-base lg:text-lg whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
+              24/7 Notfall-Hotline: +49 176 70211430
+            </span>
+          </div>
+          
+          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+            Professionelle Messie-Wohnung Entrümpelung
+          </h1>
+          
+          {/* Social Proof */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-6 mb-6 px-4">
+            <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2 min-w-0">
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 flex-shrink-0" />
+              <span className="text-white font-semibold text-sm sm:text-base whitespace-nowrap">500+ zufriedene Kunden</span>
+            </div>
+            <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2 min-w-0">
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
+              <span className="text-white font-semibold text-sm sm:text-base whitespace-nowrap">Deutschlandweit</span>
+            </div>
+          </div>
+          
+          <p className="text-xl lg:text-2xl text-white mb-8 max-w-4xl mx-auto drop-shadow-2xl">
+            <span className="text-blue-200 font-semibold">Diskret</span>, 
+            <span className="text-green-200 font-semibold mx-2">Schnell</span>, 
+            <span className="text-blue-200 font-semibold">Verständnisvoll</span>
+          </p>
+          <p className="text-lg text-white mb-8 max-w-3xl mx-auto drop-shadow-2xl">
+            Wir helfen Ihnen, ohne Vorurteile. <span className="text-yellow-300 font-semibold">Kostenlose Beratung</span> - <span className="text-green-300 font-semibold">Sofort verfügbar</span>
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
+            <a
+            href="tel:+4917670211430"
+            className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+          >
+            <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span>Sofort anrufen</span>
+          </a>
+
+            <a
+            href="https://wa.me/4917670211430?text=Hallo,%20ich%20benötige%20diskrete%20Hilfe%20bei%20einer%20Wohnungsräumung"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+          >
+            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span>WhatsApp</span>
+          </a>
+          </div>
+
+          {/* Trust Elements */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            style={{
+              transform: `translateY(${scrollY * -0.05}px)`,
+              transition: 'transform 0.1s ease-out'
+            }}
+          >
+            <div className="flex flex-col items-center p-3 sm:p-4 lg:p-6 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <Clock className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-blue-600 mb-2 sm:mb-3 lg:mb-4" />
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">24h Reaktionszeit</h3>
+              <p className="text-xs sm:text-sm lg:text-base text-gray-700 text-center">Schnelle Antwort auf Ihre Anfrage</p>
+            </div>
+            <div className="flex flex-col items-center p-3 sm:p-4 lg:p-6 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <Shield className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-green-600 mb-2 sm:mb-3 lg:mb-4" />
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">100% Diskret</h3>
+              <p className="text-xs sm:text-sm lg:text-base text-gray-700 text-center">Absolute Vertraulichkeit garantiert</p>
+            </div>
+            <div className="flex flex-col items-center p-3 sm:p-4 lg:p-6 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 sm:col-span-2 md:col-span-1">
+              <Euro className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-blue-600 mb-2 sm:mb-3 lg:mb-4" />
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">Festpreisgarantie</h3>
+              <p className="text-xs sm:text-sm lg:text-base text-gray-700 text-center">Transparente Kostenstruktur</p>
+            </div>
+          </div>
+          
+          {/* Trust Badges */}
+          <div className="mt-8 flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-8 opacity-80">
+            <div className="flex items-center space-x-2 text-white">
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-xs sm:text-sm font-medium">Versichert & Zertifiziert</span>
+            </div>
+            <div className="flex items-center space-x-2 text-white">
+              <Award className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-xs sm:text-sm font-medium">Geprüfte Qualität</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;

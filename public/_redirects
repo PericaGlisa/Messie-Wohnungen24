@@ -1,0 +1,10 @@
+# Netlify redirects file for React SPA
+# This ensures all routes are handled by the React app
+/*    /index.html   200
+
+# Optional: Redirect www to non-www (uncomment if needed)
+# https://www.messie-wohnungen24.de/* https://messie-wohnungen24.de/:splat 301!
+
+# Optional: Force HTTPS (uncomment if needed)
+# http://messie-wohnungen24.de/* https://messie-wohnungen24.de/:splat 301!
+# http://www.messie-wohnungen24.de/* https://messie-wohnungen24.de/:splat 301!

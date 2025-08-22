@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Search, Shield, Clock, Euro, Phone, Users, Award, CheckCircle, ThumbsUp, ThumbsDown, ExternalLink, Star } from 'lucide-react';
+import { ChevronDown, ChevronUp, Shield, Clock, Euro, Phone, Users, Award, CheckCircle, ThumbsUp, ThumbsDown, ExternalLink, Star } from 'lucide-react';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState('alle');
   const [helpfulVotes, setHelpfulVotes] = useState<{[key: number]: {helpful: number, notHelpful: number}}>({});
 
   const faqs = [
@@ -124,14 +122,6 @@ const FAQ = () => {
     }
   ];
 
-  const categories = [
-    { id: 'alle', label: 'Alle Fragen', icon: Users },
-    { id: 'services', label: 'Leistungen', icon: CheckCircle },
-    { id: 'pricing', label: 'Preise & Kosten', icon: Euro },
-    { id: 'process', label: 'Ablauf & Zeit', icon: Clock },
-    { id: 'contact', label: 'Kontakt & Beratung', icon: Phone }
-  ];
-
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -145,14 +135,6 @@ const FAQ = () => {
       }
     }));
   };
-
-  const filteredFaqs = faqs.filter(faq => {
-    const matchesCategory = activeCategory === 'alle' || faq.category === activeCategory;
-    const matchesSearch = searchTerm === '' || 
-      faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
 
   const handleContactClick = (contactText: string) => {
     // Scroll to contact section or open contact modal
@@ -170,65 +152,11 @@ const FAQ = () => {
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
             Häufige Fragen
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Hier finden Sie Antworten auf die wichtigsten Fragen zu unseren Dienstleistungen
-          </p>
-          
-          {/* Trust Badges */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 lg:gap-8 mb-8 px-4">
-            <div className="flex items-center space-x-2 text-green-600">
-              <Award className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-xs sm:text-sm font-medium">ISO 9001 Zertifiziert</span>
-            </div>
-            <div className="flex items-center space-x-2 text-blue-600">
-              <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-xs sm:text-sm font-medium">Vollversichert</span>
-            </div>
-            <div className="flex items-center space-x-2 text-yellow-600">
-              <Star className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-              <span className="text-xs sm:text-sm font-medium">4.9/5 Kundenbewertung</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Frage suchen..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-        </div>
-
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => {
-            const IconComponent = category.icon;
-            return (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeCategory === category.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-blue-50 hover:text-blue-600 shadow-sm'
-                }`}
-              >
-                <IconComponent className="w-4 h-4" />
-                <span>{category.label}</span>
-              </button>
-            );
-          })}
         </div>
 
         {/* FAQ Items */}
         <div className="space-y-6">
-          {filteredFaqs.map((faq, index) => {
+          {faqs.map((faq, index) => {
             const IconComponent = faq.icon;
             const votes = helpfulVotes[index] || { helpful: 0, notHelpful: 0 };
             
@@ -338,34 +266,7 @@ const FAQ = () => {
           })}
         </div>
         
-        {/* No Results Message */}
-        {filteredFaqs.length === 0 && (
-          <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-8 h-8 text-gray-400" />
-            </div>
-            <h3 className="text-lg font-medium text-gray-700 mb-2">Keine Ergebnisse gefunden</h3>
-            <p className="text-gray-500">Versuchen Sie andere Suchbegriffe oder wählen Sie eine andere Kategorie.</p>
-          </div>
-        )}
-        
-        {/* Emergency Contact */}
-        <div className="mt-16 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-6 text-center">
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-              <Phone className="w-6 h-6 text-red-600" />
-            </div>
-          </div>
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">Notfall oder dringende Frage?</h3>
-          <p className="text-gray-600 mb-4">Rufen Sie uns direkt an - wir sind 24/7 für Sie erreichbar</p>
-          <a
-            href="tel:+4917670211430"
-            className="inline-flex items-center space-x-2 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium"
-          >
-            <Phone className="w-5 h-5" />
-            <span>+49 176 70211430</span>
-          </a>
-        </div>
+
       </div>
     </section>
   );

@@ -9,6 +9,18 @@ export default {
           700: '#3d7a9a',
         },
       },
+      spacing: {
+        'safe': 'env(safe-area-inset-bottom)',
+        'safe-top': 'env(safe-area-inset-top)',
+        'safe-left': 'env(safe-area-inset-left)',
+        'safe-right': 'env(safe-area-inset-right)',
+      },
+      padding: {
+        'safe': 'env(safe-area-inset-bottom)',
+        'safe-top': 'env(safe-area-inset-top)',
+        'safe-left': 'env(safe-area-inset-left)',
+        'safe-right': 'env(safe-area-inset-right)',
+      },
     },
   },
   plugins: [],

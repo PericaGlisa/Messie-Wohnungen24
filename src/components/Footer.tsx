@@ -55,15 +55,15 @@ const Footer = () => {
               <div className="flex items-center justify-center space-x-2">
                 <Award className="w-5 h-5 text-green-400" />
                 <div>
-                  <div className="text-xl font-bold text-white">15+</div>
-                  <div className="text-xs text-gray-300">Jahre Erfahrung</div>
+                  <div className="text-base font-bold text-white">Faire Preise</div>
+                  <div className="text-xs text-gray-300 mt-1">Garantiert</div>
                 </div>
               </div>
               <div className="flex items-center justify-center space-x-2">
                 <Shield className="w-5 h-5 text-blue-400" />
                 <div>
                   <div className="text-xl font-bold text-white">100%</div>
-                  <div className="text-xs text-gray-300">Diskret & Sicher</div>
+                  <div className="text-xs text-gray-300">Discret Respektvoll</div>
                 </div>
               </div>
             </div>
@@ -84,23 +84,7 @@ const Footer = () => {
                 Professionelle, diskrete Entrümpelung von Messie-Wohnungen. 
                 Wir helfen mit Verständnis und ohne Vorurteile.
               </p>
-              
-              {/* Certifications */}
-              <div className="space-y-2">
-                <h4 className="text-sm font-semibold text-white mb-2">Zertifizierungen</h4>
-                <div className="flex items-center space-x-2 text-xs text-gray-300">
-                  <CheckCircle className="w-3 h-3 text-green-400" />
-                  <span>Vollversichert</span>
-                </div>
-                <div className="flex items-center space-x-2 text-xs text-gray-300">
-                  <CheckCircle className="w-3 h-3 text-green-400" />
-                  <span>DSGVO-konform</span>
-                </div>
-                <div className="flex items-center space-x-2 text-xs text-gray-300">
-                  <CheckCircle className="w-3 h-3 text-green-400" />
-                  <span>Umweltschutz</span>
-                </div>
-              </div>
+
             </div>
 
           {/* Quick Links */}
@@ -109,6 +93,10 @@ const Footer = () => {
               <ul className="space-y-2 text-sm">
                 <li><a href="#start" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Start</span></a></li>
                 <li><a href="#leistungen" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Unsere Leistungen</span></a></li>
+                <li><a href="#ueber-uns" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Über uns</span></a></li>
+                <li><a href="#testimonials" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Kundenstimmen</span></a></li>
+                <li><a href="#faq" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>FAQ</span></a></li>
+                <li><a href="#contact-form" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Kontakt</span></a></li>
               </ul>
 
             </div>
@@ -119,7 +107,7 @@ const Footer = () => {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center space-x-2 text-gray-300">
                   <CheckCircle className="w-4 h-4 text-green-400" />
-                  <span>24h Reaktionszeit</span>
+                  <span>Verständnisvoll</span>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-300">
                   <CheckCircle className="w-4 h-4 text-green-400" />
@@ -205,8 +193,8 @@ const Footer = () => {
                 </div>
                 <div className="text-xs text-gray-300 space-y-1">
                   <div>Mo-Sa: 8:00 - 20:00 Uhr</div>
-                  <div className="text-green-400">Notfälle: 24/7 verfügbar</div>
-                  <div className="text-blue-400">Reaktionszeit: &lt; 24h</div>
+                  <div className="text-green-400">Discreet Hotline: 24/7 available</div>
+                  <div className="text-blue-400">Schneller Kundenservice</div>
                 </div>
               </div>
               
@@ -217,7 +205,7 @@ const Footer = () => {
                     <a href="tel:+4917670211430" className="text-gray-300 hover:text-white transition-colors font-semibold">
                       +49 176 70211430
                     </a>
-                    <div className="text-xs text-gray-400">Sofort-Hilfe</div>
+                    <div className="text-xs text-gray-400">Direkt per WhatsApp schreiben</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -240,7 +228,7 @@ const Footer = () => {
                     <a href="mailto:info@messie-wohnungen24.de" className="text-gray-300 hover:text-white transition-colors font-semibold">
                       info@messie-wohnungen24.de
                     </a>
-                    <div className="text-xs text-gray-400">Antwort &lt; 24h</div>
+                    <div className="text-xs text-gray-400">Discret anrufen</div>
                   </div>
                 </div>
               </div>
@@ -316,24 +304,23 @@ const Footer = () => {
 
         <div className="mt-6 p-4 bg-gray-700 rounded-lg text-center">
           <p className="text-sm text-gray-300">
-            <strong className="text-white">24/7 Diskretion garantiert</strong> - 
-            Wir verstehen Ihre Situation und helfen ohne Vorurteile
+            <strong className="text-white">Wenn es schwerfällt, den ersten Schritt zu machen, seien Sie sicher, dass Sie nicht allein sind – wir sind da, um zu helfen, damit diese Geschichte einen neuen, sauberen und friedlichen Anfang bekommt.</strong>
           </p>
         </div>
         
       </div>
       
-      {/* Back to Top Button - Fixed Position (positioned above WhatsApp button) */}
+      {/* Back to Top Button - Fixed Position (positioned on left side) */}
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-20 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 group"
+          className="fixed bottom-16 left-4 sm:bottom-20 sm:left-6 bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 group min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Nach oben scrollen"
         >
-          <ArrowUp className="w-6 h-6" />
-          <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6" />
+          <div className="hidden sm:block absolute left-full ml-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             Nach oben
-            <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-800"></div>
+            <div className="absolute right-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-r-gray-800"></div>
           </div>
         </button>
       )}

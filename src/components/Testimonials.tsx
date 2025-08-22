@@ -100,15 +100,13 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-green-50">
+    <section id="testimonials" className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-green-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
             Was unsere Kunden sagen
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Vertrauen Sie auf die Erfahrungen anderer Menschen, die den Mut gefasst haben
-          </p>
+
           
           {/* Social Proof Metrics */}
           <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg max-w-4xl mx-auto mb-12">

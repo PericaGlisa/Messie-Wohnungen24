@@ -1,4 +1,45 @@
 // Performance optimization utilities
+import { useEffect, useRef } from 'react';
+
+// Custom hook for intersection observer
+export const useIntersectionObserver = (
+  callback: () => void,
+  options: {
+    threshold?: number;
+    rootMargin?: string;
+    once?: boolean;
+  } = {}
+) => {
+  const elementRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          callback();
+          if (options.once !== false) {
+            observer.unobserve(element);
+          }
+        }
+      },
+      {
+        threshold: options.threshold || 0.1,
+        rootMargin: options.rootMargin || '0px'
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.unobserve(element);
+    };
+  }, [callback, options.threshold, options.rootMargin, options.once]);
+
+  return elementRef;
+};
 
 // Throttled scroll handler
 export const createThrottledScrollHandler = (callback: (scrollY: number) => void) => {

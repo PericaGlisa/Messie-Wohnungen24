@@ -18,6 +18,10 @@ const Header = () => {
   const navigation = [
     { name: 'Start', href: '#start' },
     { name: 'Unsere Leistungen', href: '#leistungen', hasDropdown: true },
+    { name: 'Über uns', href: '#ueber-uns' },
+    { name: 'Kundenstimmen', href: '#testimonials' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Kontakt', href: '#contact-form' },
   ];
 
   const services = [
@@ -41,11 +45,11 @@ const Header = () => {
           <div className="flex items-center justify-center space-x-6 text-xs sm:text-sm">
             <div className="flex items-center space-x-1">
               <Shield className="w-3 h-3" />
-              <span className="font-medium">100% Diskret & Versichert</span>
+              <span className="font-medium">100% Discreet & Zufriedenheit garantiert</span>
             </div>
             <div className="flex items-center space-x-1">
               <Clock className="w-3 h-3" />
-              <span className="font-medium">24/7 Notfall-Service</span>
+              <span className="font-medium">24/7 Immer für Sie da</span>
             </div>
             <div className="hidden sm:flex items-center space-x-1">
               <Star className="w-3 h-3 text-yellow-300" />
@@ -58,7 +62,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <a href="#start" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200">
             <img 
               src="/MessieLogo.png" 
               alt="Messie-Wohnungen24 Logo" 
@@ -67,7 +71,7 @@ const Header = () => {
             <h1 className="text-lg font-bold text-blue-600">
                Messie-Wohnungen24
              </h1>
-          </div>
+          </a>
 
           {/* Enhanced Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
@@ -126,7 +130,12 @@ const Header = () => {
 
           {/* Enhanced Mobile menu button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+              setIsMenuOpen(!isMenuOpen);
+              if (isMenuOpen) {
+                setShowMobileServices(false);
+              }
+            }}
             className="lg:hidden p-2 rounded-lg text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-200"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -166,7 +175,10 @@ const Header = () => {
                       <a
                         href={item.href}
                         className="flex items-center justify-between text-gray-700 hover:text-blue-600 font-medium py-3 px-3 rounded-lg hover:bg-blue-50 transition-all duration-200"
-                        onClick={() => setIsMenuOpen(false)}
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setShowMobileServices(false);
+                        }}
                       >
                         <span>{item.name}</span>
                       </a>

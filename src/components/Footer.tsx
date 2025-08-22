@@ -38,29 +38,29 @@ const Footer = () => {
           {/* Trust & Stats Banner */}
           <div className="bg-gradient-to-r from-blue-600/20 to-green-600/20 p-6 rounded-lg mb-8 border border-blue-500/30">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div className="flex items-center justify-center space-x-2">
-                <Users className="w-5 h-5 text-blue-400" />
+              <div className="flex flex-col items-center justify-center space-y-2">
+                <Users className="w-6 h-6 text-blue-400" />
                 <div>
                   <div className="text-xl font-bold text-white">500+</div>
                   <div className="text-xs text-gray-300">Zufriedene Kunden</div>
                 </div>
               </div>
-              <div className="flex items-center justify-center space-x-2">
-                <Star className="w-5 h-5 text-yellow-400" />
+              <div className="flex flex-col items-center justify-center space-y-2">
+                <Star className="w-6 h-6 text-yellow-400" />
                 <div>
                   <div className="text-xl font-bold text-white">4.9/5</div>
                   <div className="text-xs text-gray-300">Kundenbewertung</div>
                 </div>
               </div>
-              <div className="flex items-center justify-center space-x-2">
-                <Award className="w-5 h-5 text-green-400" />
+              <div className="flex flex-col items-center justify-center space-y-2">
+                <Award className="w-6 h-6 text-green-400" />
                 <div>
                   <div className="text-base font-bold text-white">Faire Preise</div>
                   <div className="text-xs text-gray-300 mt-1">Garantiert</div>
                 </div>
               </div>
-              <div className="flex items-center justify-center space-x-2">
-                <Shield className="w-5 h-5 text-blue-400" />
+              <div className="flex flex-col items-center justify-center space-y-2">
+                <Shield className="w-6 h-6 text-blue-400" />
                 <div>
                   <div className="text-xl font-bold text-white">100%</div>
                   <div className="text-xs text-gray-300">Discret Respektvoll</div>

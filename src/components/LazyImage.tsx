@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 interface LazyImageProps {
   src: string;
@@ -24,38 +24,10 @@ const LazyImage: React.FC<LazyImageProps> = ({
   onError
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
-    if (priority === 'high') {
-      setIsInView(true);
-      return;
-    }
-
-    observerRef.current = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observerRef.current?.disconnect();
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '50px'
-      }
-    );
-
-    if (imgRef.current) {
-      observerRef.current.observe(imgRef.current);
-    }
-
-    return () => {
-      observerRef.current?.disconnect();
-    };
-  }, [priority]);
+  // Removed lazy loading - images load immediately
 
   const handleLoad = () => {
     setIsLoaded(true);
@@ -95,22 +67,20 @@ const LazyImage: React.FC<LazyImageProps> = ({
       )}
       
       {/* Main image */}
-      {isInView && (
-        <img
-          src={getOptimizedSrc(src)}
-          srcSet={generateSrcSet(src)}
-          sizes={sizes}
-          alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={style}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading={priority === 'high' ? 'eager' : 'lazy'}
-          decoding="async"
-        />
-      )}
+      <img
+        src={getOptimizedSrc(src)}
+        srcSet={generateSrcSet(src)}
+        sizes={sizes}
+        alt={alt}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={style}
+        onLoad={handleLoad}
+        onError={handleError}
+        loading="eager"
+        decoding="async"
+      />
       
       {/* Error state */}
       {hasError && (

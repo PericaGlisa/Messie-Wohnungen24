@@ -42,18 +42,21 @@ const Header = () => {
       {/* Trust Banner */}
       <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center space-x-6 text-xs sm:text-sm">
+          <div className="flex flex-row items-center justify-center space-x-3 sm:space-x-6 text-xs sm:text-sm">
             <div className="flex items-center space-x-1">
               <Shield className="w-3 h-3" />
-              <span className="font-medium">100% Discreet & Zufriedenheit garantiert</span>
+              <span className="font-medium hidden xs:inline">100% Discreet & Zufriedenheit garantiert</span>
+              <span className="font-medium xs:hidden">100% Diskret</span>
             </div>
             <div className="flex items-center space-x-1">
               <Clock className="w-3 h-3" />
-              <span className="font-medium">24/7 Immer für Sie da</span>
+              <span className="font-medium hidden xs:inline">24/7 Immer für Sie da</span>
+              <span className="font-medium xs:hidden">24/7 Service</span>
             </div>
-            <div className="hidden sm:flex items-center space-x-1">
+            <div className="flex items-center space-x-1">
               <Star className="w-3 h-3 text-yellow-300" />
-              <span className="font-medium">4.9/5 Sterne • 500+ Kunden</span>
+              <span className="font-medium hidden sm:inline">4.9/5 Sterne • 500+ Kunden</span>
+              <span className="font-medium sm:hidden">4.9★ 500+</span>
             </div>
           </div>
         </div>

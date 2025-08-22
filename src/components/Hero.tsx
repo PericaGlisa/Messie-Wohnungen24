@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Phone, MessageCircle, Clock, Shield, Euro, Award, MapPin } from 'lucide-react';
-import { getOptimizedImageProps, progressiveLoader } from '../utils/performance';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   useEffect(() => {
     setIsVisible(true);
-    
-    // Preload hero image with high priority using progressive loader
-    const heroImageSrc = '/images/high-angle-house-interior-with-clutter.webp';
-    progressiveLoader.loadImage(heroImageSrc, 'high')
-      .then(() => setImageLoaded(true))
-      .catch((error) => {
-        console.warn('Failed to load hero image:', error);
-        setImageLoaded(true); // Still show the component even if image fails
-      });
   }, []);
 
   return (
@@ -24,17 +13,11 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-green-900/60 z-10"></div>
         <div className="absolute inset-0 w-full h-full">
-          {imageLoaded && (
-            <img 
-              src="/images/high-angle-house-interior-with-clutter.webp" 
-              alt="Professionelle Entrümpelung" 
-              className="w-full h-full object-cover transition-opacity duration-500"
-              {...getOptimizedImageProps('/images/high-angle-house-interior-with-clutter.webp', 'high')}
-            />
-          )}
-          {!imageLoaded && (
-            <div className="w-full h-full bg-gradient-to-br from-blue-200 to-green-200 animate-pulse"></div>
-          )}
+          <img 
+            src="/images/high-angle-house-interior-with-clutter.webp" 
+            alt="Professionelle Entrümpelung" 
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
       
@@ -51,8 +34,13 @@ const Hero = () => {
           </div>
           
           <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-          Messie Wohnung Entrümpelung in Frankfurt am Main – Professionelle Wohnungsauflösung
-        </h1>
+            <span className="block sm:hidden">
+              Messie Wohnung Entrümpelung in Frankfurt – Professionelle Räumung
+            </span>
+            <span className="hidden sm:block">
+              Messie Wohnung Entrümpelung in Frankfurt am Main – Professionelle Wohnungsauflösung
+            </span>
+          </h1>
           
           {/* Social Proof */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-6 mb-6 px-4">
@@ -72,7 +60,12 @@ const Hero = () => {
             <span className="text-blue-200 font-semibold">Verständnisvoll</span>
           </p>
           <p className="text-lg text-white mb-8 max-w-3xl mx-auto drop-shadow-2xl">
-            Messie-Wohnungen24 übernimmt die komplette Betreuung – von der <span className="text-yellow-300 font-semibold">Entrümpelung, Abholung von Sperrmüll und Entsorgung des Abfalls</span> <span className="text-green-300 font-semibold">bis hin zur gründlichen Reinigung ganz nach Ihren Wünschen</span>. Zusätzlich <span className="text-yellow-300 font-semibold">streichen wir und führen eine Spezialreinigung von Wänden und Böden durch</span>, sodass sich Ihr Zuhause wieder <span className="text-green-300 font-semibold">wie neu renoviert anfühlt</span>! Und das alles zu fairen, festen und <span className="text-yellow-300 font-semibold">transparenten Preisen</span>! Sie sind hier genau richtig!
+            <span className="block sm:hidden">
+              <span className="text-yellow-300 font-semibold">Komplette Entrümpelung</span>, <span className="text-green-300 font-semibold">gründliche Reinigung</span> und <span className="text-yellow-300 font-semibold">Renovierung</span> zu <span className="text-yellow-300 font-semibold">transparenten Preisen</span>!
+            </span>
+            <span className="hidden sm:block">
+              Messie-Wohnungen24 übernimmt die komplette Betreuung – von der <span className="text-yellow-300 font-semibold">Entrümpelung, Abholung von Sperrmüll und Entsorgung des Abfalls</span> <span className="text-green-300 font-semibold">bis hin zur gründlichen Reinigung ganz nach Ihren Wünschen</span>. Zusätzlich <span className="text-yellow-300 font-semibold">streichen wir und führen eine Spezialreinigung von Wänden und Böden durch</span>, sodass sich Ihr Zuhause wieder <span className="text-green-300 font-semibold">wie neu renoviert anfühlt</span>! Und das alles zu fairen, festen und <span className="text-yellow-300 font-semibold">transparenten Preisen</span>! Sie sind hier genau richtig!
+            </span>
           </p>
 
           {/* CTA Buttons */}

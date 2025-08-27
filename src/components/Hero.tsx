@@ -75,7 +75,7 @@ const Hero = () => {
             className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
           >
             <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>Unverbindlich anfragen</span>
+            <span>Diskret anrufen</span>
           </a>
 
             <a
@@ -95,10 +95,13 @@ const Hero = () => {
                 contactForm.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="bg-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-orange-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+            className="bg-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-orange-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
           >
-            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>Kontakt Formular</span>
+            <div className="flex items-center space-x-2">
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span>Kostenloses angebot</span>
+            </div>
+            <span className="text-xs mt-1 opacity-90">In 60 Minute zum Festpreis</span>
           </button>
           </div>
 

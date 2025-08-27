@@ -40,7 +40,7 @@ const Header = () => {
         : 'bg-gradient-to-r from-blue-50 via-white to-green-50 shadow-sm'
     }`}>
       {/* Promotional Banner */}
-      <div className="bg-orange-600 text-white py-2 overflow-hidden">
+      <div className="bg-orange-700 text-white py-2 overflow-hidden">
         <div className="animate-pulse">
           <div className="whitespace-nowrap animate-marquee">
             <span className="text-xs sm:text-sm font-bold px-4">
@@ -79,8 +79,8 @@ const Header = () => {
           <a href="#start" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200">
             <img 
               src="/MessieLogo.png" 
-              alt="Messie-Wohnungen24 Logo" 
-              className="h-12 w-12"
+              alt="Logo" 
+              className="h-12 w-auto"
             />
             <h1 className="text-lg font-bold text-blue-600">
                Messie-Wohnungen24
@@ -151,6 +151,7 @@ const Header = () => {
               }
             }}
             className="lg:hidden p-2 rounded-lg text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-200"
+            aria-label={isMenuOpen ? "Menü schließen" : "Menü öffnen"}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

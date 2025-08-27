@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Play, Award, Shield, Clock, Users, TrendingUp, Heart, CheckCircle, Star } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Award, Shield, Clock, Users, TrendingUp, Heart, CheckCircle, Star } from 'lucide-react';
 import { useIntersectionObserver } from '../utils/performance';
 import CertificationCard from './CertificationCard';
 import VirtualizedSuccessStories from './VirtualizedSuccessStories';
 import StatisticsSection from './StatisticsSection';
 
-const AboutUs = () => {
-  const [showVideo, setShowVideo] = useState(false);
+const AboutUs = React.memo(() => {
   const [isVisible, setIsVisible] = useState(false);
 
   const aboutRef = useIntersectionObserver(
@@ -18,22 +17,20 @@ const AboutUs = () => {
 
 
 
-  const stats = [
+  const stats = useMemo(() => [
     { number: '500+', label: 'Erfolgreiche Projekte' },
     { number: '98%', label: 'Kundenzufriedenheit' },
     { number: '24/7', label: 'Notfall-Service' }
-  ];
+  ], []);
 
-
-
-  const certifications = [
+  const certifications = useMemo(() => [
     { name: 'ISO 9001 Qualitätsmanagement', icon: Award, color: 'text-blue-600' },
     { name: 'Vollversicherung bis 2 Mio. €', icon: Shield, color: 'text-green-600' },
     { name: 'Umweltzertifikat', icon: Heart, color: 'text-emerald-600' },
     { name: 'Datenschutz-Zertifikat', icon: CheckCircle, color: 'text-purple-600' }
-  ];
+  ], []);
 
-  const successStories = [
+  const successStories = useMemo(() => [
     {
       quote: 'Nach 15 Jahren konnte ich endlich wieder mein Zuhause genießen. Das Team war unglaublich einfühlsam.',
       author: 'Maria K.',
@@ -112,20 +109,16 @@ const AboutUs = () => {
       afterImage: '/images/scene-with-miscellaneous-items-being-sold-yard-sale-bargains (2).webp',
       helpfulVotes: 33
     }
-  ];
+  ], []);
 
-
-
-
-
-  const trustBadges = [
+  const trustBadges = useMemo(() => [
     { icon: Shield, text: 'TÜV-zertifiziert', color: 'blue' },
     { icon: Award, text: 'Branchensieger 2024', color: 'yellow' },
     { icon: Users, text: '500+ zufriedene Kunden', color: 'green' },
     { icon: Star, text: '4.9/5 Sterne Bewertung', color: 'orange' }
-  ];
+  ], []);
 
-  const customerRatings = {
+  const customerRatings = useMemo(() => ({
     overall: 4.9,
     totalReviews: 312,
     breakdown: [
@@ -135,7 +128,7 @@ const AboutUs = () => {
       { stars: 2, percentage: 1 },
       { stars: 1, percentage: 0 }
     ]
-  };
+  }), []);
 
 
 
@@ -154,48 +147,7 @@ const AboutUs = () => {
         {/* Customer Success Stories */}
         <VirtualizedSuccessStories stories={successStories} />
 
-        {/* Video Introduction */}
-        <div className="mb-16">
-          <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 text-center mb-12">
-            So sieht eine Entrümpelung in der Praxis aus
-          </h3>
-          <div className="max-w-4xl mx-auto">
-            {!showVideo ? (
-              <div 
-                className="relative bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl p-12 text-center cursor-pointer hover:shadow-xl transition-shadow duration-300"
-                onClick={() => setShowVideo(true)}
-              >
-                <div className="absolute inset-0 bg-black bg-opacity-20 rounded-2xl"></div>
-                <div className="relative z-10">
-                  <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Play className="w-10 h-10 text-white ml-1" />
-                  </div>
-                  <p className="text-white text-lg opacity-90">
-                    Erhalten Sie einen realistischen Einblick, wie ein stark vernachlässigter Messie-Haushalt wieder bewohnbar wird – kompakt in einem Reel.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-gray-100 rounded-2xl p-8 text-center">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Play className="w-8 h-8 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-gray-800 mb-4">
-                  Video wird geladen...
-                </h4>
-                <p className="text-gray-600 mb-6">
-                  Hier würde normalerweise unser Einführungsvideo erscheinen.
-                </p>
-                <button 
-                  onClick={() => setShowVideo(false)}
-                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Zurück
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+
 
 
 
@@ -237,7 +189,14 @@ const AboutUs = () => {
                   <div key={index} className="flex items-center space-x-2 text-sm">
                     <span className="w-8 text-gray-600">{rating.stars}★</span>
                     <div className="flex-1 bg-gray-200 rounded-full h-2">
-                      <div className={`bg-yellow-400 h-2 rounded-full`} style={{ width: `${rating.percentage}%` }}></div>
+                      <div 
+                        className="bg-yellow-400 h-2 rounded-full transition-all duration-300 ease-out"
+                        style={{ 
+                          width: `${rating.percentage}%`,
+                          transform: 'translateZ(0)',
+                          willChange: 'width'
+                        }}
+                      ></div>
                     </div>
                     <span className="w-10 text-gray-600 text-right">{rating.percentage}%</span>
                   </div>
@@ -255,6 +214,6 @@ const AboutUs = () => {
       </div>
     </section>
   );
-};
+});
 
 export default AboutUs;

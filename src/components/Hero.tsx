@@ -15,8 +15,19 @@ const Hero = () => {
         <div className="absolute inset-0 w-full h-full">
           <img 
             src="/images/high-angle-house-interior-with-clutter.webp" 
+            srcSet="
+              /images/optimized/high-angle-house-interior-with-clutter-480w.webp 480w,
+              /images/optimized/high-angle-house-interior-with-clutter-768w.webp 768w,
+              /images/optimized/high-angle-house-interior-with-clutter-1280w.webp 1280w,
+              /images/optimized/high-angle-house-interior-with-clutter-1920w.webp 1920w
+            "
+            sizes="100vw"
             alt="Professionelle Entrümpelung" 
             className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            style={{ willChange: 'auto' }}
           />
         </div>
       </div>
@@ -24,7 +35,7 @@ const Hero = () => {
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           {/* Emergency Contact Banner with Vibration Effect */}
-          <div className="emergency-hotline bg-blue-600 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg mb-4 sm:mb-6 inline-flex items-center space-x-2 sm:space-x-3 shadow-lg hover:shadow-xl transition-all duration-300 max-w-full">
+          <div className="emergency-hotline bg-blue-700 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg mb-4 sm:mb-6 inline-flex items-center space-x-2 sm:space-x-3 shadow-lg hover:shadow-xl transition-all duration-300 max-w-full">
             <div className="phone-icon flex-shrink-0">
               <Phone className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </div>
@@ -72,26 +83,26 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
             <a
             href="tel:+4917670211430"
-            className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
+            className="bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-800 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
           >
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>Diskret anrufen</span>
             </div>
-            <span className="text-xs mt-1 opacity-90">Sofortige Beratung</span>
+            <span className="text-xs mt-1 text-blue-100">Sofortige Beratung</span>
           </a>
 
             <a
             href="https://wa.me/4917670211430?text=Hallo,%20ich%20benötige%20diskrete%20Hilfe%20bei%20einer%20Wohnungsräumung"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
+            className="bg-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-800 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
           >
             <div className="flex items-center space-x-2">
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>WhatsApp</span>
             </div>
-            <span className="text-xs mt-1 opacity-90">Direkt schreiben</span>
+            <span className="text-xs mt-1 text-green-100">Direkt schreiben</span>
           </a>
 
             <button
@@ -101,13 +112,13 @@ const Hero = () => {
                 contactForm.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="bg-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-orange-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
+            className="bg-orange-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-orange-800 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
           >
             <div className="flex items-center space-x-2">
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>Kostenloses angebot</span>
             </div>
-            <span className="text-xs mt-1 opacity-90">In 60 Minute zum Festpreis</span>
+            <span className="text-xs mt-1 text-orange-100">In 60 Minute zum Festpreis</span>
           </button>
           </div>
 
@@ -117,17 +128,17 @@ const Hero = () => {
           >
             <div className="flex flex-col items-center p-3 sm:p-4 lg:p-6 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <Clock className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-blue-600 mb-2 sm:mb-3 lg:mb-4" />
-              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">Sofortige Rückmeldung</h3>
+              <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">Sofortige Rückmeldung</h2>
               <p className="text-xs sm:text-sm lg:text-base text-gray-700 text-center">Schnelle Antwort auf Ihre Anfrage</p>
             </div>
             <div className="flex flex-col items-center p-3 sm:p-4 lg:p-6 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <Shield className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-green-600 mb-2 sm:mb-3 lg:mb-4" />
-              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">100% Diskret</h3>
+              <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">100% Diskret</h2>
               <p className="text-xs sm:text-sm lg:text-base text-gray-700 text-center">Absolute Vertraulichkeit garantiert</p>
             </div>
             <div className="flex flex-col items-center p-3 sm:p-4 lg:p-6 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 sm:col-span-2 md:col-span-1">
               <Euro className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-blue-600 mb-2 sm:mb-3 lg:mb-4" />
-              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">Festpreisgarantie</h3>
+              <h2 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 text-center">Festpreisgarantie</h2>
               <p className="text-xs sm:text-sm lg:text-base text-gray-700 text-center">Transparente Kostenstruktur</p>
             </div>
           </div>

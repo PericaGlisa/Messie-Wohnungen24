@@ -111,43 +111,31 @@
 .animate-delay-400 { animation-delay: 400ms; }
 .animate-delay-500 { animation-delay: 500ms; }
 
-/* Enhanced Emergency Hotline Animations - More noticeable vibrating effect */
-@keyframes vibrate {
-  0%, 100% { transform: translateX(0) translateY(0); }
-  10% { transform: translateX(-2px) translateY(-1px); }
-  20% { transform: translateX(2px) translateY(1px); }
-  30% { transform: translateX(-2px) translateY(1px); }
-  40% { transform: translateX(2px) translateY(-1px); }
-  50% { transform: translateX(-1px) translateY(2px); }
-  60% { transform: translateX(1px) translateY(-2px); }
-  70% { transform: translateX(-1px) translateY(-2px); }
-  80% { transform: translateX(1px) translateY(2px); }
-  90% { transform: translateX(-1px) translateY(1px); }
+/* Optimized Emergency Hotline Animations - Reduced complexity for better performance */
+@keyframes subtle-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
 }
 
 @keyframes phone-ring {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  10%, 30%, 50%, 70%, 90% { transform: rotate(-8deg) scale(1.05); }
-  20%, 40%, 60%, 80% { transform: rotate(8deg) scale(1.05); }
-}
-
-@keyframes urgent-glow {
-  0%, 100% { 
-    background-color: #4e97c0;
-  }
-  50% { 
-    background-color: #4e97c0;
-  }
-}
-
-@keyframes text-flash {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
 }
 
 .emergency-hotline {
-  animation: vibrate 3s infinite, urgent-glow 2s infinite;
-  will-change: transform, box-shadow, background-color;
+  animation: subtle-pulse 2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.emergency-hotline:hover {
+  animation: phone-ring 0.5s ease-in-out;
 }
 
 .phone-icon {
@@ -172,6 +160,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeSpeed;
+    /* Optimize layout performance */
+    contain: layout style;
   }
   
   .font-serif {
@@ -184,6 +174,9 @@
     image-rendering: crisp-edges;
     /* Smooth loading transition */
     transition: opacity 0.3s ease-in-out;
+    /* Improve layout performance */
+    contain: layout;
+    will-change: auto;
   }
   
   /* Prevent layout shifts */
@@ -205,8 +198,27 @@
   
   /* Optimize image containers */
   .image-container {
-    contain: layout style;
+    contain: layout style paint;
     overflow: hidden;
+    transform: translateZ(0);
+  }
+  
+  /* Performance optimized utility classes */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  .contain-layout {
+    contain: layout;
+  }
+  
+  .contain-paint {
+    contain: paint;
+  }
+  
+  .contain-strict {
+    contain: strict;
   }
   
   /* Lazy loading placeholder optimization */

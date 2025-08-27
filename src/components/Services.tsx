@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Home, Sparkles, Shield, Paintbrush, Truck, Handshake, Euro, ArrowRight, Clock, Phone, CheckCircle } from 'lucide-react';
 import { createAnimationObserver, batchDOMUpdates, prefersReducedMotion, getOptimizedImageProps, progressiveLoader } from '../utils/performance';
 import LazyImage from './LazyImage';
 
-const Services = () => {
+const Services = React.memo(() => {
   const [selectedService, setSelectedService] = useState(null);
   const [visibleCards, setVisibleCards] = useState([]);
   const [activeTab, setActiveTab] = useState('einzelleistungen');
@@ -34,24 +34,34 @@ const Services = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Preload modal images on hover
-  const preloadModalImages = (serviceIndex: number) => {
-    if (preloadedImages.has(serviceIndex)) return;
-    
-    const service = services[serviceIndex];
-    if (service?.beforeAfter) {
-      // Create image elements to trigger preloading
-      const beforeImg = new Image();
-      const afterImg = new Image();
-      
-      beforeImg.src = service.beforeAfter.before;
-      afterImg.src = service.beforeAfter.after;
-      
-      setPreloadedImages(prev => new Set([...prev, serviceIndex]));
-    }
-  };
-
-  const services = [
+  // Memoized services array to prevent unnecessary re-renders
+  const services = useMemo(() => [
+    {
+      icon: Home,
+      title: 'Vollständige Entrümpelung',
+      description: 'Professionelle Räumung aller Räume mit größter Sorgfalt und Diskretion.',
+      image: '/images/fragment-photo-children-s-room-with-scattered-things-toys.webp',
+      duration: '1-3 Tage',
+      process: ['Besichtigung & Kostenvoranschlag', 'Sortierung & Kategorisierung', 'Fachgerechte Entrümpelung', 'Endreinigung'],
+      guarantee: 'Festpreisgarantie',
+      rating: 4.9,
+      reviews: 127,
+      beforeAfter: { before: '/images/fragment-photo-children-s-room-with-scattered-things-toys.webp', after: '/images/man-living-tiny-house.webp' },
+      testimonial: '"Sehr professionell und diskret. Bin sehr zufrieden!" - Maria K.'
+    },
+    {
+      icon: Sparkles,
+      title: 'Tiefenreinigung',
+      description: 'Gründliche Reinigung nach der Entrümpelung für einen Neuanfang.',
+      image: '/images/messy-interior-full-clothing.webp',
+      duration: '4-8 Std',
+      process: ['Grobreinigung', 'Spezialreinigung', 'Desinfektion', 'Qualitätskontrolle'],
+      guarantee: 'Zufriedenheitsgarantie',
+      rating: 4.8,
+      reviews: 89,
+      beforeAfter: { before: '/images/messy-interior-full-clothing.webp', after: '/images/person-sleeping-bed-tiny-house.webp' },
+      testimonial: '"Endlich wieder ein sauberes Zuhause!" - Thomas M.'
+    },
     {
       icon: Home,
       title: 'Vollständige Entrümpelung',
@@ -85,7 +95,6 @@ const Services = () => {
       title: 'Desinfektion',
       description: 'Fachgerechte Desinfektion für ein hygienisch sauberes Zuhause.',
       image: '/images/abandoned-house-cluttered-interior.webp',
-
       duration: '2-4 Std',
       process: ['Vorreinigung', 'Professionelle Desinfektion', 'Luftreinigung', 'Abschlusskontrolle'],
       guarantee: 'Hygienezertifikat',
@@ -99,7 +108,6 @@ const Services = () => {
       title: 'Renovierungsarbeiten',
       description: 'Kleinere Renovierungen und Instandsetzungen nach Bedarf.',
       image: '/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.webp',
-
       duration: '1-5 Tage',
       process: ['Schadensbewertung', 'Materialplanung', 'Renovierungsarbeiten', 'Qualitätsprüfung'],
       guarantee: '2 Jahre Gewährleistung',
@@ -113,7 +121,6 @@ const Services = () => {
       title: 'Fachgerechte Entsorgung',
       description: 'Umweltgerechte Entsorgung und Recycling aller Materialien.',
       image: '/images/miscellaneous-items-being-sold-yard-sale.webp',
-
       duration: '1-2 Std',
       process: ['Sortierung nach Materialien', 'Recycling-Vorbereitung', 'Fachgerechte Entsorgung', 'Entsorgungsnachweis'],
       guarantee: 'Umweltzertifikat',
@@ -127,7 +134,6 @@ const Services = () => {
       title: 'Diskrete Abwicklung',
       description: 'Verständnisvolle Betreuung ohne Vorurteile oder Bewertungen.',
       image: '/images/anxiety-induced-by-clutter-house.webp',
-
       duration: 'Durchgehend',
       process: ['Vertrauliche Beratung', 'Diskrete Terminplanung', 'Sensible Durchführung', 'Nachbetreuung'],
       guarantee: 'Verschwiegenheitserklärung',
@@ -136,11 +142,28 @@ const Services = () => {
       beforeAfter: { before: '/images/anxiety-induced-by-clutter-house.webp', after: '/images/person-sleeping-bed-tiny-house.webp' },
       testimonial: '"Endlich jemand, der versteht. Danke!" - Michael R.'
     }
-  ];
+  ], []);
+
+  // Preload modal images on hover - memoized to prevent unnecessary re-renders
+  const preloadModalImages = useCallback((serviceIndex: number) => {
+    if (preloadedImages.has(serviceIndex)) return;
+    
+    const service = services[serviceIndex];
+    if (service?.beforeAfter) {
+      // Create image elements to trigger preloading
+      const beforeImg = new Image();
+      const afterImg = new Image();
+      
+      beforeImg.src = service.beforeAfter.before;
+      afterImg.src = service.beforeAfter.after;
+      
+      setPreloadedImages(prev => new Set([...prev, serviceIndex]));
+    }
+  }, [services, preloadedImages]);
 
   const servicePackages = [
     {
-      name: 'Basis-Paket',
+      name: 'Neuer Anfang',
       services: [
         'Vollständige Entrümpelung und Abtransport von Sperrmüll',
         'Grobreinigung'
@@ -149,7 +172,7 @@ const Services = () => {
       savings: '15%'
     },
     {
-      name: 'Komplett-Paket',
+      name: 'Sauber & Sicher',
       services: [
         'Vollständige Entrümpelung und Abtransport von Sperrmüll',
         'Tiefen- und Spezialreinigung aller Oberflächen',
@@ -161,7 +184,7 @@ const Services = () => {
       savings: '25%'
     },
     {
-      name: 'Premium-Paket',
+      name: 'Komplette Verwandlung',
       services: [
         'Vollständige Entrümpelung und Abtransport von Sperrmüll',
         'Tiefen- und Spezialreinigung aller Oberflächen',
@@ -195,7 +218,7 @@ const Services = () => {
                 className={`px-4 sm:px-6 py-2 sm:py-3 rounded-md font-medium transition-all duration-200 text-sm sm:text-base ${
                   activeTab === 'einzelleistungen'
                     ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                    : 'text-gray-600 hover:text-blue-700 hover:bg-blue-100'
                 }`}
               >
                 Einzelleistungen
@@ -205,7 +228,7 @@ const Services = () => {
                 className={`px-4 sm:px-6 py-2 sm:py-3 rounded-md font-medium transition-all duration-200 text-sm sm:text-base ${
                   activeTab === 'pakete'
                     ? 'bg-blue-600 text-white shadow-md'
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                    : 'text-gray-600 hover:text-blue-700 hover:bg-blue-100'
                 }`}
               >
                 Service-Pakete
@@ -242,7 +265,7 @@ const Services = () => {
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-200 hover:scale-105"
-                      priority="low"
+                      priority={index < 3 ? "high" : "low"}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       style={{ willChange: 'transform' }}
                     />
@@ -381,6 +404,6 @@ const Services = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Services;

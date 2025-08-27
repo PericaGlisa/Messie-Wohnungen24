@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Star, Quote, User, MapPin, Calendar, CheckCircle, Filter, Play, ExternalLink, Shield } from 'lucide-react';
+import { Star, Quote, User, MapPin, Calendar, CheckCircle, Filter, ExternalLink, Shield } from 'lucide-react';
 
 const Testimonials = () => {
   const [activeFilter, setActiveFilter] = useState('alle');
-  const [showVideo, setShowVideo] = useState(false);
+
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
 
   const testimonials = [
@@ -15,7 +15,7 @@ const Testimonials = () => {
       date: "März 2024",
       projectType: "Wohnungsentrümpelung",
       verified: true,
-      hasVideo: true,
+
       reviewPlatform: "Google Reviews",
       helpfulVotes: 23
     },
@@ -27,7 +27,7 @@ const Testimonials = () => {
       date: "Februar 2024",
       projectType: "Nachlassentrümpelung",
       verified: true,
-      hasVideo: false,
+
       reviewPlatform: "Trustpilot",
       helpfulVotes: 18
     },
@@ -39,7 +39,6 @@ const Testimonials = () => {
       date: "Januar 2024",
       projectType: "Messie-Wohnung",
       verified: true,
-      hasVideo: true,
       reviewPlatform: "Google Reviews",
       helpfulVotes: 31
     },
@@ -51,7 +50,6 @@ const Testimonials = () => {
       date: "April 2024",
       projectType: "Kellerentrümpelung",
       verified: true,
-      hasVideo: false,
       reviewPlatform: "Trustpilot",
       helpfulVotes: 15
     },
@@ -63,7 +61,6 @@ const Testimonials = () => {
       date: "März 2024",
       projectType: "Dachbodenentrümpelung",
       verified: true,
-      hasVideo: false,
       reviewPlatform: "Google Reviews",
       helpfulVotes: 27
     },
@@ -75,7 +72,6 @@ const Testimonials = () => {
       date: "Februar 2024",
       projectType: "Komplette Haushaltsauflösung",
       verified: true,
-      hasVideo: true,
       reviewPlatform: "Trustpilot",
       helpfulVotes: 19
     }
@@ -117,7 +113,7 @@ const Testimonials = () => {
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center space-x-1 mb-1 sm:mb-2">
-                  <span className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-500">{aggregateStats.averageRating}</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-600">{aggregateStats.averageRating}</span>
                   <Star className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-yellow-400 fill-current" />
                 </div>
                 <div className="text-gray-600 text-xs sm:text-sm">Durchschnittsbewertung</div>
@@ -154,18 +150,7 @@ const Testimonials = () => {
               key={index}
               className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
             >
-              {/* Video Play Button */}
-              {testimonial.hasVideo && (
-                <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-4 flex items-center justify-center">
-                  <button 
-                    onClick={() => setShowVideo(true)}
-                    className="bg-white bg-opacity-90 rounded-full p-3 hover:bg-opacity-100 transition-all duration-200 shadow-lg flex items-center space-x-2"
-                  >
-                    <Play className="w-6 h-6 text-blue-600" />
-                    <span className="text-blue-600 font-medium">Video ansehen</span>
-                  </button>
-                </div>
-              )}
+
               
               {/* Content */}
               <div className="p-6">
@@ -210,7 +195,7 @@ const Testimonials = () => {
                 </div>
                 
                 {/* Project Type Badge */}
-                <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium mb-3 inline-block">
+                <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium mb-3 inline-block">
                   {testimonial.projectType}
                 </div>
                 
@@ -254,27 +239,7 @@ const Testimonials = () => {
           </p>
         </div>
         
-        {/* Video Modal */}
-        {showVideo && (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-              <div className="flex justify-between items-center p-4 border-b">
-                <h3 className="text-lg font-semibold">Kundenerfahrung - Video</h3>
-                <button 
-                  onClick={() => setShowVideo(false)}
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  ×
-                </button>
-              </div>
-              <div className="p-4">
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-600">Video-Player würde hier erscheinen</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+
       </div>
     </section>
   );

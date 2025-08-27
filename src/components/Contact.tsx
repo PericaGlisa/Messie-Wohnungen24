@@ -58,7 +58,7 @@ const Contact = () => {
               <span>Über 500 zufriedene Kunden</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Star className="w-4 h-4 text-yellow-500" />
+              <Star className="w-4 h-4 text-yellow-600" />
               <span>4.9/5 Sterne Bewertung</span>
             </div>
 

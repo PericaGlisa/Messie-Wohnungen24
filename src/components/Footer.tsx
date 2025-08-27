@@ -183,7 +183,7 @@ const Footer = () => {
 
             {/* Enhanced Contact */}
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-white">Notfall-Kontakt</h3>
+              <h3 className="text-lg font-semibold mb-4 text-white">Kontakt</h3>
               
               {/* Operating Hours */}
               <div className="bg-gray-700/50 p-3 rounded-lg mb-4">

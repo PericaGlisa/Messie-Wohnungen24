@@ -170,10 +170,7 @@ const ContactForm = () => {
                     <Shield className="w-4 h-4 text-green-600" />
                     <span>SSL-verschlüsselt</span>
                   </div>
-                  <div className="flex items-center space-x-1">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    <span>DSGVO-konform</span>
-                  </div>
+
                   <div className="flex items-center space-x-1">
                     <Users className="w-4 h-4 text-green-600" />
                     <span>Streng vertraulich</span>

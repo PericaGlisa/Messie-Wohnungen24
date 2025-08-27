@@ -39,6 +39,17 @@ const Header = () => {
         ? 'bg-white/95 backdrop-blur-md shadow-lg' 
         : 'bg-gradient-to-r from-blue-50 via-white to-green-50 shadow-sm'
     }`}>
+      {/* Promotional Banner */}
+      <div className="bg-orange-600 text-white py-2 overflow-hidden">
+        <div className="animate-pulse">
+          <div className="whitespace-nowrap animate-marquee">
+            <span className="text-xs sm:text-sm font-bold px-4">
+              +++ AKTUELLE INFORMATION +++ Einführungsrabatt – 30% auf den ersten Auftrag bundesweit. Nur bis 30.08. buchen und 30% sparen – Einsatzdatum frei wählbar.
+            </span>
+          </div>
+        </div>
+      </div>
+      
       {/* Trust Banner */}
       <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

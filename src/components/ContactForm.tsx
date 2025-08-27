@@ -73,12 +73,8 @@ const ContactForm = () => {
             <span>100% Diskret & Vertraulich</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
-            Diskrete Anfrage stellen
+            Kostenloses Angebot erhalten
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Wir sind für Sie da. Kontaktieren Sie uns diskret und unverbindlich - 
-            der erste Schritt ist oft der schwerste, aber Sie sind nicht allein.
-          </p>
           
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-600">
@@ -98,10 +94,10 @@ const ContactForm = () => {
           <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-lg shadow-lg border border-gray-200">
             <div className="mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
-                Kostenlose Beratung anfragen
+                Füllen Sie die Felder aus
               </h3>
               <p className="text-gray-600 text-sm sm:text-base">
-                Füllen Sie das Formular aus und erhalten Sie ein unverbindliches Angebot für Ihre Entrümpelung.
+                Wir senden Ihnen Ihr kostenloses Angebot in Kürze zu.
               </p>
             </div>
             

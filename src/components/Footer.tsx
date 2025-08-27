@@ -295,9 +295,7 @@ const Footer = () => {
                 <Shield className="w-4 h-4 text-green-400" />
                 <span>© 2025 Messie-Wohnungen24.de - Alle Rechte vorbehalten</span>
               </div>
-              <div className="text-xs text-gray-500 mt-1 text-center md:text-left">
-                Zertifiziert • Versichert • DSGVO-konform
-              </div>
+
             </div>
           </div>
         </div>

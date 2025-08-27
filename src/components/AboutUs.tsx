@@ -20,7 +20,6 @@ const AboutUs = () => {
 
   const stats = [
     { number: '500+', label: 'Erfolgreiche Projekte' },
-    { number: '15+', label: 'Jahre Erfahrung' },
     { number: '98%', label: 'Kundenzufriedenheit' },
     { number: '24/7', label: 'Notfall-Service' }
   ];
@@ -145,13 +144,7 @@ const AboutUs = () => {
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-opacity duration-500 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}>
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
-            Über uns
-          </h2>
 
-        </div>
 
         {/* Mission Statement with Statistics */}
         <StatisticsSection stats={stats} />

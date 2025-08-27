@@ -205,7 +205,7 @@ const Footer = () => {
                     <a href="tel:+4917670211430" className="text-gray-300 hover:text-white transition-colors font-semibold">
                       +49 176 70211430
                     </a>
-                    <div className="text-xs text-gray-400">Direkt per WhatsApp schreiben</div>
+                    <div className="text-xs text-gray-400">Diskret anrufen</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -219,7 +219,7 @@ const Footer = () => {
                     >
                       WhatsApp
                     </a>
-                    <div className="text-xs text-gray-400">Diskret & schnell</div>
+                    <div className="text-xs text-gray-400">Direkt per WhatsApp schreiben</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -228,7 +228,7 @@ const Footer = () => {
                     <a href="mailto:info@messie-wohnungen24.de" className="text-gray-300 hover:text-white transition-colors font-semibold">
                       info@messie-wohnungen24.de
                     </a>
-                    <div className="text-xs text-gray-400">Diskret anrufen</div>
+                    <div className="text-xs text-gray-400">Ihre Anfrage wird innerhalb von 60 Minuten bearbeitet</div>
                   </div>
                 </div>
               </div>

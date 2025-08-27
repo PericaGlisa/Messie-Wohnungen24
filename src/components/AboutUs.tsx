@@ -157,7 +157,7 @@ const AboutUs = () => {
         {/* Video Introduction */}
         <div className="mb-16">
           <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 text-center mb-12">
-            Lernen Sie uns persönlich kennen
+            So sieht eine Entrümpelung in der Praxis aus
           </h3>
           <div className="max-w-4xl mx-auto">
             {!showVideo ? (
@@ -170,11 +170,8 @@ const AboutUs = () => {
                   <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Play className="w-10 h-10 text-white ml-1" />
                   </div>
-                  <h4 className="text-2xl font-bold text-white mb-4">
-                    Persönliche Botschaft von unserem Team
-                  </h4>
                   <p className="text-white text-lg opacity-90">
-                    Erfahren Sie mehr über unsere Mission und unser Engagement für Sie
+                    Erhalten Sie einen realistischen Einblick, wie ein stark vernachlässigter Messie-Haushalt wieder bewohnbar wird – kompakt in einem Reel.
                   </p>
                 </div>
               </div>

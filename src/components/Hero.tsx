@@ -72,20 +72,26 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
             <a
             href="tel:+4917670211430"
-            className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+            className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
           >
-            <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>Diskret anrufen</span>
+            <div className="flex items-center space-x-2">
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span>Diskret anrufen</span>
+            </div>
+            <span className="text-xs mt-1 opacity-90">Sofortige Beratung</span>
           </a>
 
             <a
             href="https://wa.me/4917670211430?text=Hallo,%20ich%20benötige%20diskrete%20Hilfe%20bei%20einer%20Wohnungsräumung"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex items-center justify-center space-x-2"
+            className="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-all duration-200 shadow-lg transform hover:scale-105 flex flex-col items-center justify-center"
           >
-            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>WhatsApp</span>
+            <div className="flex items-center space-x-2">
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span>WhatsApp</span>
+            </div>
+            <span className="text-xs mt-1 opacity-90">Direkt schreiben</span>
           </a>
 
             <button

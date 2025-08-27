@@ -29,7 +29,7 @@ const Hero = () => {
               <Phone className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
             </div>
             <span className="font-semibold hotline-text text-xs sm:text-sm md:text-base lg:text-lg whitespace-nowrap overflow-hidden text-ellipsis min-w-0">
-              24/7 Discreet Hotline: +49 176 70211430
+              24/7 Diskret Hotline: +49 176 70211430
             </span>
           </div>
           
@@ -55,7 +55,7 @@ const Hero = () => {
           </div>
           
           <p className="text-xl lg:text-2xl text-white mb-8 max-w-4xl mx-auto drop-shadow-2xl">
-            <span className="text-blue-200 font-semibold">Discrete</span>,
+            <span className="text-blue-200 font-semibold">Diskret</span>,
             <span className="text-green-200 font-semibold mx-2">Schnell Termin</span>,
             <span className="text-blue-200 font-semibold">Verständnisvoll</span>
           </p>

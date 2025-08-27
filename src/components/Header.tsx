@@ -45,7 +45,7 @@ const Header = () => {
           <div className="flex flex-row items-center justify-center space-x-3 sm:space-x-6 text-xs sm:text-sm">
             <div className="flex items-center space-x-1">
               <Shield className="w-3 h-3" />
-              <span className="font-medium hidden xs:inline">100% Discreet & Zufriedenheit garantiert</span>
+              <span className="font-medium hidden xs:inline">100% Diskret & Zufriedenheit garantiert</span>
               <span className="font-medium xs:hidden">100% Diskret</span>
             </div>
             <div className="flex items-center space-x-1">

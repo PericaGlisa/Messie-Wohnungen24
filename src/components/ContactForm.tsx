@@ -59,11 +59,7 @@ const ContactForm = () => {
             </div>
             <div className="flex items-center space-x-2">
               <CheckCircle className="w-4 h-4 text-green-600" />
-              <span>24h Reaktionszeit garantiert</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Users className="w-4 h-4 text-blue-600" />
-              <span>15+ Jahre Erfahrung</span>
+              <span>Rückmeldung in 60 Minuten</span>
             </div>
           </div>
         </div>

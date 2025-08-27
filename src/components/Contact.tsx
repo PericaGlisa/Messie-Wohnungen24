@@ -61,10 +61,7 @@ const Contact = () => {
               <Star className="w-4 h-4 text-yellow-500" />
               <span>4.9/5 Sterne Bewertung</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <Users className="w-4 h-4 text-blue-600" />
-              <span>15+ Jahre Erfahrung</span>
-            </div>
+
           </div>
         </div>
 

@@ -93,10 +93,10 @@ const Testimonials = () => {
     : testimonials.filter(t => t.projectType === activeFilter);
 
   const aggregateStats = {
-    totalReviews: 847,
+    totalReviews: 500,
     averageRating: 4.9,
     platforms: ['Google Reviews', 'Trustpilot', 'ProvenExpert'],
-    recentReviews: 156
+    recentReviews: 8
   };
 
   return (
@@ -144,23 +144,7 @@ const Testimonials = () => {
             </div>
           </div>
           
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeFilter === filter.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-blue-50 hover:text-blue-600'
-                }`}
-              >
-                <Filter className="w-4 h-4 inline mr-2" />
-                {filter.label} ({filter.count})
-              </button>
-            ))}
-          </div>
+
         </div>
 
         {/* Enhanced Testimonials Grid */}

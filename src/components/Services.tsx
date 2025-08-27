@@ -90,7 +90,7 @@ const Services = () => {
       process: ['Vorreinigung', 'Professionelle Desinfektion', 'Luftreinigung', 'Abschlusskontrolle'],
       guarantee: 'Hygienezertifikat',
       rating: 4.9,
-      reviews: 156,
+      reviews: 8,
       beforeAfter: { before: '/images/abandoned-house-cluttered-interior.webp', after: '/images/young-man-isolation-home.webp' },
       testimonial: '"Fühle mich wieder sicher in meinem Zuhause." - Anna L.'
     },

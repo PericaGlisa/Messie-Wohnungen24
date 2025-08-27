@@ -220,18 +220,7 @@ const AboutUs = () => {
               Über 500 zufriedene Kunden vertrauen auf unsere Expertise. Entdecken Sie, was uns auszeichnet.
             </p>
             
-            {/* Trust Badges */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {trustBadges.map((badge, index) => {
-                const IconComponent = badge.icon;
-                return (
-                  <div key={index} className={`flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-md border-2 border-${badge.color}-200`}>
-                    <IconComponent className={`w-5 h-5 text-${badge.color}-600`} />
-                    <span className="text-sm font-semibold text-gray-700">{badge.text}</span>
-                  </div>
-                );
-              })}
-            </div>
+
             
             {/* Customer Ratings */}
             <div className="bg-white rounded-lg p-6 shadow-lg max-w-md mx-auto mb-8">
@@ -262,26 +251,7 @@ const AboutUs = () => {
           
 
           
-          {/* Video Integration */}
-          <div className="mt-12 text-center">
-            <div className="bg-white rounded-lg p-6 shadow-lg max-w-2xl mx-auto">
-              <h4 className="text-xl font-bold text-gray-800 mb-4">
-                Sehen Sie unsere Arbeitsweise im Video
-              </h4>
-              <div className="relative">
-                <div className="aspect-video bg-gradient-to-br from-blue-100 to-green-100 rounded-lg flex items-center justify-center cursor-pointer hover:from-blue-200 hover:to-green-200 transition-colors"
-                     onClick={() => setShowVideo(true)}>
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-blue-700 transition-colors">
-                      <Play className="w-8 h-8 text-white ml-1" />
-                    </div>
-                    <p className="text-gray-700 font-semibold">Diskrete Arbeitsweise erleben</p>
-                    <p className="text-sm text-gray-600">3 Min. Einblick in unseren Prozess</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
 
 

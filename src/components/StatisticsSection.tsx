@@ -17,9 +17,18 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({ stats }) => {
           Unsere Mission
         </h3>
         <p className="text-lg text-gray-700 leading-relaxed mb-8">
-          Bei Messie-Wohnungen24 verstehen wir, dass hinter jeder Entrümpelung eine persönliche Geschichte steht. 
-          Unser Ziel ist es nicht nur, Räume zu reinigen, sondern Menschen dabei zu helfen, einen neuen Lebensabschnitt 
-          zu beginnen. Wir arbeiten mit größter Sensibilität, Respekt und Professionalität.
+          Bei Messie-Wohnungen24 wissen wir, dass jede Entrümpelung weit mehr bedeutet als nur das Entfernen von Gegenständen. 
+          Jeder Raum hat seinen Wert und seine Bedeutung – er verdient Aufmerksamkeit und Respekt in jedem Schritt der Räumung, 
+          und unsere Aufgabe ist es, ihm Ordnung und Klarheit zurückzugeben.
+        </p>
+        <p className="text-lg text-gray-700 leading-relaxed mb-8">
+          Unser Ziel ist es, den Menschen die Möglichkeit zu geben, freier zu atmen und dass ihr Zuhause wieder ein Ort 
+          der Sicherheit und Geborgenheit wird. Bei jedem Auftrag arbeiten wir mit Diskretion, Verständnis und tiefem 
+          Respekt gegenüber dem, was für jemanden einmal wichtig war.
+        </p>
+        <p className="text-lg text-gray-700 leading-relaxed mb-8">
+          Wir arbeiten sorgfältig, professionell und mit viel Mitgefühl – denn wir glauben, dass das Reinigen eines 
+          Raumes auch bedeutet, die Türen zu einem neuen, besseren Lebensabschnitt zu öffnen.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {stats.map((stat, index) => (

@@ -150,30 +150,13 @@ const AboutUs = () => {
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">
             Über uns
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Wir sind mehr als nur ein Entrümpelungsunternehmen - wir sind Ihr Begleiter für einen Neuanfang
-          </p>
+
         </div>
 
         {/* Mission Statement with Statistics */}
         <StatisticsSection stats={stats} />
 
-        {/* Certifications */}
-        <div className="mb-16">
-          <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 text-center mb-12">
-            Zertifizierungen & Qualifikationen
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {certifications.map((cert, index) => (
-              <CertificationCard
-                key={index}
-                name={cert.name}
-                icon={cert.icon}
-                color={cert.color}
-              />
-            ))}
-          </div>
-        </div>
+
 
         {/* Customer Success Stories */}
         <VirtualizedSuccessStories stories={successStories} />

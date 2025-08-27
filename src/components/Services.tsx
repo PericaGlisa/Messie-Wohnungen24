@@ -1,12 +1,127 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Home, Sparkles, Shield, Paintbrush, Truck, Handshake, Euro, ArrowRight, Clock, Phone, CheckCircle } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { Home, Sparkles, Shield, Paintbrush, Truck, Handshake, Euro, ArrowRight, Clock, Phone, CheckCircle, X } from 'lucide-react';
 import { createAnimationObserver, batchDOMUpdates, prefersReducedMotion, getOptimizedImageProps, progressiveLoader } from '../utils/performance';
 import LazyImage from './LazyImage';
 
+// ServiceModal Component
+const ServiceModal = ({ service, isOpen, onClose }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen || !service) return null;
+
+  return createPortal(
+    <div 
+      className="fixed inset-0 z-[10000] flex items-center justify-center"
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        backdropFilter: 'blur(4px)'
+      }}
+    >
+      <div 
+        className="absolute inset-0 bg-black/50" 
+        onClick={onClose}
+      />
+      
+      <div 
+        className="relative bg-white rounded-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          transform: 'translateZ(0)',
+          willChange: 'transform'
+        }}
+      >
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="flex justify-between items-start mb-4 sm:mb-6">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 pr-4">
+              {service.title}
+            </h3>
+            <button 
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-600 transition-colors duration-200 p-1 rounded-full hover:bg-gray-100"
+              aria-label="Modal schließen"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          
+          {/* Before/After Gallery */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div>
+              <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Vorher</h4>
+              <LazyImage 
+                src={service.beforeAfter.before}
+                alt="Vorher"
+                className="w-full h-40 sm:h-48 object-cover rounded-lg"
+                priority="high"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+            <div>
+              <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Nachher</h4>
+              <LazyImage 
+                src={service.beforeAfter.after}
+                alt="Nachher"
+                className="w-full h-40 sm:h-48 object-cover rounded-lg"
+                priority="high"
+                sizes="(max-width: 640px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+          
+          {/* Customer Testimonial */}
+          <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
+            <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-800">Kundenmeinung</h4>
+            <p className="text-sm sm:text-base text-gray-600 italic">{service.testimonial}</p>
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <button className="flex-1 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 text-sm sm:text-base">
+              Kostenvoranschlag anfordern
+            </button>
+            <button className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 flex items-center justify-center text-sm sm:text-base">
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              Sofort anrufen
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 const Services = React.memo(() => {
-  const [selectedService, setSelectedService] = useState(null);
-  const [visibleCards, setVisibleCards] = useState([]);
+ const [selectedService, setSelectedService] = useState(null);
   const [activeTab, setActiveTab] = useState('einzelleistungen');
+  const [visibleCards, setVisibleCards] = useState([]);
   const [preloadedImages, setPreloadedImages] = useState(new Set());
 
   useEffect(() => {
@@ -61,34 +176,6 @@ const Services = React.memo(() => {
       reviews: 89,
       beforeAfter: { before: '/images/messy-interior-full-clothing.webp', after: '/images/person-sleeping-bed-tiny-house.webp' },
       testimonial: '"Endlich wieder ein sauberes Zuhause!" - Thomas M.'
-    },
-    {
-      icon: Home,
-      title: 'Vollständige Entrümpelung',
-      description: 'Professionelle Räumung aller Räume mit größter Sorgfalt und Diskretion.',
-      image: '/images/fragment-photo-children-s-room-with-scattered-things-toys.webp',
-
-      duration: '1-3 Tage',
-      process: ['Besichtigung & Kostenvoranschlag', 'Sortierung & Kategorisierung', 'Fachgerechte Entrümpelung', 'Endreinigung'],
-      guarantee: 'Festpreisgarantie',
-      rating: 4.9,
-      reviews: 127,
-      beforeAfter: { before: '/images/fragment-photo-children-s-room-with-scattered-things-toys.webp', after: '/images/man-living-tiny-house.webp' },
-      testimonial: '"Sehr professionell und diskret. Bin sehr zufrieden!" - Maria K.'
-    },
-    {
-      icon: Sparkles,
-      title: 'Tiefenreinigung',
-      description: 'Gründliche Reinigung nach der Entrümpelung für einen Neuanfang.',
-      image: '/images/messy-interior-full-clothing.webp',
-
-      duration: '4-8 Std',
-      process: ['Grobreinigung', 'Spezialreinigung', 'Desinfektion', 'Qualitätskontrolle'],
-      guarantee: 'Zufriedenheitsgarantie',
-      rating: 4.8,
-      reviews: 89,
-      beforeAfter: { before: '/images/messy-interior-full-clothing.webp', after: '/images/person-sleeping-bed-tiny-house.webp' },
-      testimonial: '"Alles blitzsauber! Perfekte Arbeit." - Thomas M.'
     },
     {
       icon: Shield,
@@ -199,7 +286,7 @@ const Services = React.memo(() => {
   ];
 
   return (
-    <section id="leistungen" className="py-16 lg:py-24 bg-gray-50">
+    <section id="leistungen" className="relative py-16 lg:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
@@ -247,7 +334,7 @@ const Services = React.memo(() => {
               const IconComponent = service.icon;
               const isVisible = visibleCards.includes(index);
               return (
-                <div
+                <div 
                   key={index}
                   data-index={index}
                   className={`service-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform ${
@@ -292,6 +379,8 @@ const Services = React.memo(() => {
                       <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
                     </button>
                   </div>
+                  
+
                 </div>
               );
             })}
@@ -328,11 +417,14 @@ const Services = React.memo(() => {
                   ))}
                 </ul>
                 
-                <button className={`w-full py-2 sm:py-3 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base ${
-                  pkg.popular
-                    ? 'bg-blue-600 text-white hover:bg-blue-700'
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                }`}>
+                <button 
+                  onClick={() => setSelectedService(index)}
+                  className={`w-full py-2 sm:py-3 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base ${
+                    pkg.popular
+                      ? 'bg-blue-600 text-white hover:bg-blue-700'
+                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                  }`}
+                >
                   Paket wählen
                 </button>
               </div>
@@ -342,66 +434,17 @@ const Services = React.memo(() => {
 
 
 
-        {/* Service Detail Modal */}
-        {selectedService !== null && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-2 sm:p-4 z-50" onClick={() => setSelectedService(null)}>
-            <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-              <div className="p-4 sm:p-6 lg:p-8">
-                <div className="flex justify-between items-start mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 pr-4">{services[selectedService].title}</h3>
-                  <button 
-                    onClick={() => setSelectedService(null)}
-                    className="text-gray-400 hover:text-gray-600 text-xl sm:text-2xl flex-shrink-0"
-                  >
-                    ×
-                  </button>
-                </div>
-                
-                {/* Before/After Gallery */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-                  <div>
-                    <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Vorher</h4>
-                    <LazyImage 
-                      src={services[selectedService].beforeAfter.before}
-                      alt="Vorher"
-                      className="w-full h-40 sm:h-48 object-cover rounded-lg"
-                      priority="high"
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Nachher</h4>
-                    <LazyImage 
-                      src={services[selectedService].beforeAfter.after}
-                      alt="Nachher"
-                      className="w-full h-40 sm:h-48 object-cover rounded-lg"
-                      priority="high"
-                      sizes="(max-width: 640px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-                
-                {/* Customer Testimonial */}
-                <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
-                  <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-800">Kundenmeinung</h4>
-                  <p className="text-sm sm:text-base text-gray-600 italic">{services[selectedService].testimonial}</p>
-                </div>
-                
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <button className="flex-1 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 text-sm sm:text-base">
-                    Kostenvoranschlag anfordern
-                  </button>
-                  <button className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 flex items-center justify-center text-sm sm:text-base">
-                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                    Sofort anrufen
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+
       </div>
+      
+      {/* Central Modal */}
+      {selectedService !== null && (
+        <ServiceModal 
+          service={activeTab === 'einzelleistungen' ? services[selectedService] : servicePackages[selectedService]}
+          isOpen={selectedService !== null}
+          onClose={() => setSelectedService(null)}
+        />
+      )}
     </section>
   );
 });

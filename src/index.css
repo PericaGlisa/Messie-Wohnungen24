@@ -160,8 +160,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeSpeed;
-    /* Optimize layout performance */
-    contain: layout style;
   }
   
   .font-serif {

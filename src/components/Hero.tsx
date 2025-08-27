@@ -26,7 +26,7 @@ const Hero = () => {
             className="w-full h-full object-cover"
             loading="eager"
             decoding="async"
-            fetchPriority="high"
+            fetchpriority="high"
             style={{ willChange: 'auto' }}
           />
         </div>
@@ -89,7 +89,7 @@ const Hero = () => {
               <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>Diskret anrufen</span>
             </div>
-            <span className="text-xs mt-1 text-blue-100">Sofortige Beratung</span>
+            <span className="text-xs mt-1 text-blue-100">Jetzt anrufen</span>
           </a>
 
             <a
@@ -102,7 +102,7 @@ const Hero = () => {
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>WhatsApp</span>
             </div>
-            <span className="text-xs mt-1 text-green-100">Direkt schreiben</span>
+            <span className="text-xs mt-1 text-green-100">Schreiben Sie uns per WhatsApp</span>
           </a>
 
             <button

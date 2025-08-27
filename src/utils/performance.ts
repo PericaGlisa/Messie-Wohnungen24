@@ -67,10 +67,10 @@ export const preloadImages = (imageSrcs: string[], priority: 'high' | 'low' = 'l
       // Set loading priority and optimization attributes
       if (priority === 'high') {
         img.loading = 'eager';
-        img.fetchPriority = 'high';
+        (img as any).fetchpriority = 'high';
       } else {
         img.loading = 'lazy';
-        img.fetchPriority = 'low';
+        (img as any).fetchpriority = 'low';
       }
       
       img.decoding = 'async';
@@ -111,7 +111,7 @@ export const createProgressiveImageLoader = () => {
       
       // Optimize loading attributes
       img.loading = priority === 'high' ? 'eager' : 'lazy';
-      img.fetchPriority = priority;
+      (img as any).fetchpriority = priority;
       img.decoding = 'async';
       img.src = src;
     });
@@ -427,7 +427,7 @@ export const getOptimizedImageProps = (src: string, priority: 'high' | 'low' = '
   return {
     loading: priority === 'high' ? 'eager' as const : 'lazy' as const,
     decoding: 'async' as const,
-    fetchPriority: priority,
+    fetchpriority: priority,
     style: {
       willChange: priority === 'high' ? 'auto' : 'transform',
       contentVisibility: 'auto' as const

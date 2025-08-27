@@ -120,7 +120,7 @@ const Contact = () => {
                     >
                       Nachricht senden
                     </a>
-                    <p className="text-xs sm:text-sm text-gray-600">Schnell und diskret</p>
+                    <p className="text-xs sm:text-sm text-gray-600">Schreiben Sie uns per WhatsApp</p>
                   </div>
                 </div>
 

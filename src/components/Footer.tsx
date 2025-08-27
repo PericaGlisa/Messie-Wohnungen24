@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Phone, Mail, MapPin, MessageCircle, Shield, CheckCircle, Star, Clock, Users, Award, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
@@ -25,7 +26,8 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white py-12 relative overflow-hidden">
+    <>
+    <footer className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white py-12">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -219,7 +221,7 @@ const Footer = () => {
                     >
                       WhatsApp
                     </a>
-                    <div className="text-xs text-gray-400">Direkt per WhatsApp schreiben</div>
+                    <div className="text-xs text-gray-400">Schreiben Sie uns per WhatsApp</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -307,23 +309,23 @@ const Footer = () => {
         </div>
         
       </div>
-      
-      {/* Back to Top Button - Fixed Position (positioned on left side) */}
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-16 left-4 sm:bottom-20 sm:left-6 bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 group min-w-[44px] min-h-[44px] flex items-center justify-center"
-          aria-label="Nach oben scrollen"
-        >
-          <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6" />
-          <div className="hidden sm:block absolute left-full ml-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            Nach oben
-            <div className="absolute right-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-r-gray-800"></div>
-          </div>
-        </button>
-      )}
     </footer>
-  );
+    {/* Back to Top Button - Rendered via Portal */}
+    {showBackToTop && createPortal(
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-16 left-4 sm:bottom-20 sm:left-6 bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-[10001] group min-w-[44px] min-h-[44px] flex items-center justify-center"
+        aria-label="Nach oben scrollen"
+      >
+        <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6" />
+        <div className="hidden sm:block absolute left-full ml-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          Nach oben
+          <div className="absolute right-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-r-gray-800"></div>
+        </div>
+      </button>,
+      document.body
+    )}
+  </>);
 };
 
 export default Footer;

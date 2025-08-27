@@ -138,7 +138,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
           onError={handleError}
           loading={priority === 'high' ? 'eager' : 'lazy'}
           decoding="async"
-          {...(priority === 'high' && { fetchPriority: 'high' as any })}
+          {...(priority === 'high' && { fetchpriority: 'high' as any })}
         />
       )}
       

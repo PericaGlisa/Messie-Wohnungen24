@@ -40,7 +40,7 @@ const Header = () => {
         : 'bg-gradient-to-r from-blue-50 via-white to-green-50 shadow-sm'
     }`}>
       {/* Promotional Banner */}
-      <div className="bg-orange-700 text-white py-2 overflow-hidden">
+      <div className="bg-white text-blue-600 py-2 overflow-hidden border-b border-gray-200">
         <div className="animate-pulse">
           <div className="whitespace-nowrap animate-marquee">
             <span className="text-xs sm:text-sm font-bold px-4">

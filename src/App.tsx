@@ -6,12 +6,11 @@ import { initializeImagePreloading } from './utils/performance';
 
 // Lazy load non-critical components
 const AboutUs = React.lazy(() => import('./components/AboutUs'));
-const VirtualizedGallery = React.lazy(() => import('./components/VirtualizedGallery'));
 const ContactForm = React.lazy(() => import('./components/ContactForm'));
 const FAQ = React.lazy(() => import('./components/FAQ'));
 const Testimonials = React.lazy(() => import('./components/Testimonials'));
 const Footer = React.lazy(() => import('./components/Footer'));
-const WhatsAppFloat = React.lazy(() => import('./components/WhatsAppFloat'));
+import WhatsAppFloat from './components/WhatsAppFloat';
 
 function App() {
   useEffect(() => {
@@ -28,9 +27,6 @@ function App() {
         <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
           <AboutUs />
         </Suspense>
-        <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
-          <VirtualizedGallery />
-        </Suspense>
         <Suspense fallback={<div className="h-64 bg-gray-50 animate-pulse" />}>
           <Testimonials />
         </Suspense>
@@ -44,9 +40,7 @@ function App() {
       <Suspense fallback={<div className="h-32 bg-gray-800 animate-pulse" />}>
         <Footer />
       </Suspense>
-      <Suspense fallback={null}>
-        <WhatsAppFloat />
-      </Suspense>
+      <WhatsAppFloat />
     </div>
   );
 }

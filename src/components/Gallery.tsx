@@ -1,18 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, X, Filter, Download, Share2, Eye, Clock, Award } from 'lucide-react';
 import { createLazyImageObserver, progressiveLoader, getOptimizedImageProps } from '../utils/performance';
 
-const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeFilter, setActiveFilter] = useState('alle');
-  const [showBeforeAfter, setShowBeforeAfter] = useState(false);
-  const [beforeAfterSlider, setBeforeAfterSlider] = useState(50);
-  const [visibleImages, setVisibleImages] = useState<number[]>([]);
-  const [showVirtualTour, setShowVirtualTour] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  const galleryImages = [
+const galleryImages = [
     {
       src: '/images/car-with-clothes-pile-top-it.webp',
       alt: 'Überfülltes Auto mit Kleidung',
@@ -105,6 +95,16 @@ const Gallery = () => {
     }
   ];
 
+const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeFilter, setActiveFilter] = useState('alle');
+  const [showBeforeAfter, setShowBeforeAfter] = useState(false);
+  const [beforeAfterSlider, setBeforeAfterSlider] = useState(50);
+  const [visibleImages, setVisibleImages] = useState<number[]>([]);
+  const [showVirtualTour, setShowVirtualTour] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
   const categories = [
     { id: 'alle', name: 'Alle Projekte', count: galleryImages.length },
     { id: 'Wohnräume', name: 'Wohnräume', count: galleryImages.filter(img => img.category === 'Wohnräume').length },
@@ -114,14 +114,14 @@ const Gallery = () => {
   ];
 
   // Filter images based on active category
-  const filteredImages = activeFilter === 'alle' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeFilter);
+  const filteredImages = useMemo(() => {
+    return activeFilter === 'alle' 
+      ? galleryImages 
+      : galleryImages.filter(img => img.category === activeFilter);
+  }, [activeFilter, galleryImages]);
 
   // Reset visible images when filter changes and preload first few images
   useEffect(() => {
-    setVisibleImages([]);
-    
     // Immediately show first 6 images for better UX (covers first 2 rows in 3-column grid)
     const initialVisible = [0, 1, 2, 3, 4, 5].filter(i => i < filteredImages.length);
     setVisibleImages(initialVisible);

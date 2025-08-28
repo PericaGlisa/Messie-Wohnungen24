@@ -55,18 +55,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact-form" className="relative py-16 lg:py-24 bg-gradient-to-br from-blue-50 via-blue-100 to-green-50 overflow-hidden">
-      {/* Background Image - Barely Visible */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/95 via-blue-100/95 to-green-50/95"></div>
-        <img 
-          src="/images/person-sleeping-bed-tiny-house.webp" 
-          alt="Kontakt Hintergrund" 
-          className="w-full h-full object-cover opacity-10"
-        />
-      </div>
-      
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Shield className="w-4 h-4" />
@@ -411,8 +400,7 @@ const ContactForm = () => {
             </form>
           </div>
         </div>
-      </div>
-    </section>
+    </div>
   );
 };
 

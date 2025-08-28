@@ -1,16 +1,12 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import { initializeImagePreloading } from './utils/performance';
-
-// Lazy load non-critical components
-const AboutUs = React.lazy(() => import('./components/AboutUs'));
-const ContactForm = React.lazy(() => import('./components/ContactForm'));
-const FAQ = React.lazy(() => import('./components/FAQ'));
-const Testimonials = React.lazy(() => import('./components/Testimonials'));
-const Footer = React.lazy(() => import('./components/Footer'));
+import HomePage from './components/HomePage';
+import AboutUsPage from './components/AboutUsPage';
+import ContactPage from './components/ContactPage';
+import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import { initializeImagePreloading } from './utils/performance';
 
 function App() {
   useEffect(() => {
@@ -19,29 +15,18 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
-          <AboutUs />
-        </Suspense>
-        <Suspense fallback={<div className="h-64 bg-gray-50 animate-pulse" />}>
-          <Testimonials />
-        </Suspense>
-      </main>
-      <Suspense fallback={<div className="h-64 bg-gray-50 animate-pulse" />}>
-        <FAQ />
-      </Suspense>
-      <Suspense fallback={<div className="h-96 bg-gray-50 animate-pulse" />}>
-        <ContactForm />
-      </Suspense>
-      <Suspense fallback={<div className="h-32 bg-gray-800 animate-pulse" />}>
+    <Router>
+      <div className="min-h-screen">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/ueber-uns" element={<AboutUsPage />} />
+          <Route path="/kontakt" element={<ContactPage />} />
+        </Routes>
         <Footer />
-      </Suspense>
-      <WhatsAppFloat />
-    </div>
+        <WhatsAppFloat />
+      </div>
+    </Router>
   );
 }
 

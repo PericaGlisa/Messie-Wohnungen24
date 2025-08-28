@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, Shield, Clock, Star, ChevronDown } from 'lucide-react';
 
 const Header = () => {
@@ -6,6 +7,40 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showServices, setShowServices] = useState(false);
   const [showMobileServices, setShowMobileServices] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      if (location.pathname === '/') {
+        e.preventDefault();
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // If not on home page, navigate to home page first
+        e.preventDefault();
+        navigate('/');
+        // Wait for navigation to complete, then scroll
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    }
+  };
+
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      // If already on home page, scroll to top
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // If not on home page, let the Link component handle navigation normally
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,12 +51,12 @@ const Header = () => {
   }, []);
 
   const navigation = [
-    { name: 'Start', href: '#start' },
+    { name: 'Start', href: '/', isRoute: true },
     { name: 'Unsere Leistungen', href: '#leistungen', hasDropdown: true },
-    { name: 'Über uns', href: '#ueber-uns' },
+    { name: 'Über uns', href: '/ueber-uns', isRoute: true },
     { name: 'Kundenstimmen', href: '#testimonials' },
     { name: 'FAQ', href: '#faq' },
-    { name: 'Kontakt', href: '#contact-form' },
+    { name: 'Kontakt', href: '/kontakt', isRoute: true },
   ];
 
   const services = [
@@ -76,7 +111,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <a href="#start" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200">
+          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200" onClick={handleHomeClick}>
             <img 
               src="/MessieLogo.png" 
               alt="Logo" 
@@ -85,7 +120,7 @@ const Header = () => {
             <h1 className="text-lg font-bold text-blue-600">
                Messie-Wohnungen24
              </h1>
-          </a>
+          </Link>
 
           {/* Enhanced Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
@@ -103,7 +138,7 @@ const Header = () => {
                     </button>
                     {showServices && (
                       <div 
-                        className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
+                        className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50 pointer-events-auto"
                         onMouseEnter={() => setShowServices(true)}
                         onMouseLeave={() => setShowServices(false)}
                       >
@@ -112,6 +147,7 @@ const Header = () => {
                             key={service.name}
                             href={service.href}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                            onClick={(e) => handleHashClick(e, service.href)}
                           >
                             {service.name}
                           </a>
@@ -120,12 +156,27 @@ const Header = () => {
                     )}
                   </div>
                 ) : (
-                  <a
-                    href={item.href}
-                    className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap px-3 py-2 rounded-lg hover:bg-blue-50"
-                  >
-                    {item.name}
-                  </a>
+                  item.isRoute ? (
+                    <Link
+                      to={item.href}
+                      className={`font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap px-3 py-2 rounded-lg ${
+                        location.pathname === item.href 
+                          ? 'text-blue-600 bg-blue-50 border border-blue-200' 
+                          : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                      }`}
+                      onClick={item.name === 'Start' ? handleHomeClick : () => {}}
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200 text-sm xl:text-base whitespace-nowrap px-3 py-2 rounded-lg hover:bg-blue-50"
+                      onClick={(e) => handleHashClick(e, item.href)}
+                    >
+                      {item.name}
+                    </a>
+                  )
                 )}
               </div>
             ))}
@@ -187,16 +238,37 @@ const Header = () => {
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${showMobileServices ? 'rotate-180' : ''}`} />
                       </button>
                     ) : (
-                      <a
-                        href={item.href}
-                        className="flex items-center justify-between text-gray-700 hover:text-blue-600 font-medium py-3 px-3 rounded-lg hover:bg-blue-50 transition-all duration-200"
-                        onClick={() => {
-                          setIsMenuOpen(false);
-                          setShowMobileServices(false);
-                        }}
-                      >
-                        <span>{item.name}</span>
-                      </a>
+                      item.isRoute ? (
+                        <Link
+                          to={item.href}
+                          className={`flex items-center justify-between font-medium py-3 px-3 rounded-lg transition-all duration-200 ${
+                            location.pathname === item.href 
+                              ? 'text-blue-600 bg-blue-50 border border-blue-200' 
+                              : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                          }`}
+                          onClick={(e) => {
+                            if (item.name === 'Start') {
+                              handleHomeClick(e);
+                            }
+                            setIsMenuOpen(false);
+                            setShowMobileServices(false);
+                          }}
+                        >
+                          <span>{item.name}</span>
+                        </Link>
+                      ) : (
+                        <a
+                          href={item.href}
+                          className="flex items-center justify-between text-gray-700 hover:text-blue-600 font-medium py-3 px-3 rounded-lg hover:bg-blue-50 transition-all duration-200"
+                          onClick={(e) => {
+                            handleHashClick(e, item.href);
+                            setIsMenuOpen(false);
+                            setShowMobileServices(false);
+                          }}
+                        >
+                          <span>{item.name}</span>
+                        </a>
+                      )
                     )}
                     {item.hasDropdown && showMobileServices && (
                       <div className="ml-4 mt-2 space-y-2 overflow-hidden">
@@ -205,7 +277,8 @@ const Header = () => {
                             key={service.name}
                             href={service.href}
                             className="block text-sm text-gray-600 hover:text-blue-600 py-2 px-3 rounded hover:bg-blue-50 transition-colors duration-200"
-                            onClick={() => {
+                            onClick={(e) => {
+                              handleHashClick(e, service.href);
                               setIsMenuOpen(false);
                               setShowMobileServices(false);
                             }}

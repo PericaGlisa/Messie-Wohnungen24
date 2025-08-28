@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Phone, Mail, MapPin, MessageCircle, Shield, CheckCircle, Star, Clock, Users, Award, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const location = useLocation();
+
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      // If already on home page, scroll to top
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // If not on home page, let the Link component handle navigation normally
+  };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,14 +85,14 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
             {/* Company Info */}
             <div className="sm:col-span-2 lg:col-span-1">
-              <a href="#start" className="flex items-center mb-4 hover:opacity-80 transition-opacity duration-200">
+              <Link to="/" className="flex items-center mb-4 hover:opacity-80 transition-opacity duration-200" onClick={handleHomeClick}>
                 <img 
                   src="/MessieLogo.png" 
                   alt="Messie-Wohnungen24" 
                   className="h-14 w-auto mr-3"
                 />
                 <span className="text-lg font-bold text-blue-600">Messie-Wohnungen24</span>
-              </a>
+              </Link>
               <p className="text-gray-300 text-sm leading-relaxed mb-4">
                 Professionelle, diskrete Entrümpelung von Messie-Wohnungen. 
                 Wir helfen mit Verständnis und ohne Vorurteile.
@@ -93,12 +104,12 @@ const Footer = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4 text-white">Navigation</h3>
               <ul className="space-y-2 text-sm">
-                <li><a href="#start" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Start</span></a></li>
+                <li><Link to="/" className={`transition-colors flex items-center space-x-2 ${location.pathname === '/' ? 'text-blue-400 font-semibold' : 'text-gray-300 hover:text-blue-400'}`} onClick={handleHomeClick}><span>→</span><span>Start</span></Link></li>
                 <li><a href="#leistungen" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Unsere Leistungen</span></a></li>
-                <li><a href="#ueber-uns" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Über uns</span></a></li>
+                <li><Link to="/ueber-uns" className={`transition-colors flex items-center space-x-2 ${location.pathname === '/ueber-uns' ? 'text-blue-400 font-semibold' : 'text-gray-300 hover:text-blue-400'}`}><span>→</span><span>Über uns</span></Link></li>
                 <li><a href="#testimonials" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Kundenstimmen</span></a></li>
                 <li><a href="#faq" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>FAQ</span></a></li>
-                <li><a href="#contact-form" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Kontakt</span></a></li>
+                <li><Link to="/kontakt" className={`transition-colors flex items-center space-x-2 ${location.pathname === '/kontakt' ? 'text-blue-400 font-semibold' : 'text-gray-300 hover:text-blue-400'}`}><span>→</span><span>Kontakt</span></Link></li>
               </ul>
 
             </div>

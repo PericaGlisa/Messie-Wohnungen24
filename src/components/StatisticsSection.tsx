@@ -11,8 +11,8 @@ interface StatisticsSectionProps {
 
 const StatisticsSection: React.FC<StatisticsSectionProps> = ({ stats }) => {
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-8 lg:p-12 mb-16">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="py-16 bg-white">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-6">
           Unsere Mission
         </h3>
@@ -43,7 +43,7 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({ stats }) => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

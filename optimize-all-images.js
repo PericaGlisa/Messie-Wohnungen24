@@ -16,6 +16,7 @@ const imagesToOptimize = [
   'messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.webp',
   'anxiety-induced-by-clutter-house.webp',
   'miscellaneous-items-being-sold-yard-sale.webp',
+  'miscellaneous-items-being-sold-yard-sale (1).webp',
   'scene-with-miscellaneous-items-being-sold-yard-sale-bargains.webp',
   'scene-with-miscellaneous-items-being-sold-yard-sale-bargains (1).webp',
   'scene-with-miscellaneous-items-being-sold-yard-sale-bargains (2).webp',

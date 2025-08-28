@@ -29,28 +29,37 @@ const LazyImage: React.FC<LazyImageProps> = ({
   
   // Generate responsive srcSet if not provided
   const generateSrcSet = (baseSrc: string): string => {
-    const extension = baseSrc.split('.').pop();
-    const fileName = baseSrc.split('/').pop()?.replace(`.${extension}`, '') || '';
-    
     // Check if this is an optimized image path
     if (baseSrc.includes('/optimized/')) {
       return baseSrc; // Already optimized, use as-is
     }
     
-    // Generate different sizes for responsive images using optimized versions
-    const optimizedSizes = [
+    // Extract filename without extension
+    const fileName = baseSrc.split('/').pop()?.replace(/\.(webp|jpg|jpeg|png)$/i, '') || '';
+    
+    // For hero image, use all available sizes
+    if (fileName === 'high-angle-house-interior-with-clutter') {
+      return [
+        `/images/optimized/${fileName}-480w.webp 480w`,
+        `/images/optimized/${fileName}-768w.webp 768w`,
+        `/images/optimized/${fileName}-1280w.webp 1280w`,
+        `/images/optimized/${fileName}-1920w.webp 1920w`
+      ].join(', ');
+    }
+    
+    // For other images, use standard responsive sizes
+    return [
       `/images/optimized/${fileName}-320w.webp 320w`,
       `/images/optimized/${fileName}-480w.webp 480w`,
       `/images/optimized/${fileName}-768w.webp 768w`,
       `/images/optimized/${fileName}-1024w.webp 1024w`
-    ];
-    
-    return optimizedSizes.join(', ');
+    ].join(', ');
   };
   
   const responsiveSrcSet = srcSet || generateSrcSet(src);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [isInView, setIsInView] = useState(priority === 'high');
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -90,6 +99,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
   const handleLoad = () => {
     setIsLoaded(true);
     onLoad?.();
+    // Delay hiding placeholder for smooth transition
+    setTimeout(() => setShowPlaceholder(false), 100);
   };
 
   const handleError = () => {
@@ -98,8 +109,21 @@ const LazyImage: React.FC<LazyImageProps> = ({
   };
 
   const getOptimizedSrc = (originalSrc: string) => {
-    // Return original source - don't convert to WebP automatically
-    return originalSrc;
+    // Check if this is already an optimized image
+    if (originalSrc.includes('/optimized/')) {
+      return originalSrc;
+    }
+    
+    // Extract filename without extension
+    const fileName = originalSrc.split('/').pop()?.replace(/\.(webp|jpg|jpeg|png)$/i, '') || '';
+    
+    // For hero image, use the largest optimized version
+    if (fileName === 'high-angle-house-interior-with-clutter') {
+      return `/images/optimized/${fileName}-1920w.webp`;
+    }
+    
+    // For other images, use medium size as default
+    return `/images/optimized/${fileName}-768w.webp`;
   };
 
   return (
@@ -121,25 +145,38 @@ const LazyImage: React.FC<LazyImageProps> = ({
       
       {/* Main image */}
       {isInView && (
-        <img
-          src={getOptimizedSrc(src)}
-          srcSet={responsiveSrcSet}
-          sizes={sizes}
-          alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            ...style,
-            transform: 'translateZ(0)',
-            willChange: 'opacity'
-          }}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading={priority === 'high' ? 'eager' : 'lazy'}
-          decoding="async"
-          {...(priority === 'high' && { fetchpriority: 'high' as any })}
-        />
+        <>
+          {showPlaceholder && (
+            <div 
+              className={`absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse flex items-center justify-center transition-opacity duration-300 ${isLoaded ? 'opacity-0' : 'opacity-100'}`}
+              style={{
+                filter: 'blur(5px)',
+                background: 'linear-gradient(45deg, #f3f4f6, #e5e7eb, #f9fafb)'
+              }}
+            >
+              <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+            </div>
+          )}
+          <img
+            src={getOptimizedSrc(src)}
+            srcSet={responsiveSrcSet}
+            sizes={sizes}
+            alt={alt}
+            className={`w-full h-full object-cover transition-all duration-500 ${
+              isLoaded ? 'opacity-100 filter-none' : 'opacity-0 filter blur-sm'
+            }`}
+            style={{
+              ...style,
+              transform: 'translateZ(0)',
+              willChange: 'opacity'
+            }}
+            onLoad={handleLoad}
+            onError={handleError}
+            loading={priority === 'high' ? 'eager' : 'lazy'}
+            decoding="async"
+            {...(priority === 'high' && { fetchpriority: 'high' as any })}
+          />
+        </>
       )}
       
       {/* Error state */}

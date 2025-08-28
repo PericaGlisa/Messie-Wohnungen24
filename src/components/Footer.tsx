@@ -87,7 +87,7 @@ const Footer = () => {
             <div className="sm:col-span-2 lg:col-span-1">
               <Link to="/" className="flex items-center mb-4 hover:opacity-80 transition-opacity duration-200" onClick={handleHomeClick}>
                 <img 
-                  src="/MessieLogo.png" 
+                  src="/MessieLogo.webp" 
                   alt="Messie-Wohnungen24" 
                   className="h-14 w-auto mr-3"
                 />

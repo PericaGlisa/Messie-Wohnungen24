@@ -37,13 +37,8 @@ const WhatsAppFloat = () => {
       </a>
       
       {/* Contact Form Button */}
-      <button
-        onClick={() => {
-          const contactForm = document.querySelector('#contact-form');
-          if (contactForm) {
-            contactForm.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
+      <a
+        href="/kontakt"
         className="bg-orange-600 hover:bg-orange-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center"
         aria-label="Kontakt Formular"
       >
@@ -52,7 +47,7 @@ const WhatsAppFloat = () => {
           Kontakt Formular
           <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-800"></div>
         </div>
-      </button>
+      </a>
     </div>,
     document.body
   );

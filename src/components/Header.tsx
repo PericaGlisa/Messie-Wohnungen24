@@ -113,7 +113,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200" onClick={handleHomeClick}>
             <img 
-              src="/MessieLogo.png" 
+              src="/MessieLogo.webp" 
               alt="Logo" 
               className="h-12 w-auto"
             />

@@ -6,6 +6,7 @@ import FAQ from './FAQ';
 import Testimonials from './Testimonials';
 import StatisticsSection from './StatisticsSection';
 import VirtualizedSuccessStories from './VirtualizedSuccessStories';
+import ContactForm from './ContactForm';
 
 const HomePage: React.FC = () => {
   useEffect(() => {
@@ -16,7 +17,6 @@ const HomePage: React.FC = () => {
   // Sample data for StatisticsSection
   const stats = [
     { number: '500+', label: 'Erfolgreiche Projekte' },
-    { number: '15+', label: 'Jahre Erfahrung' },
     { number: '100%', label: 'Kundenzufriedenheit' }
   ];
 
@@ -115,6 +115,23 @@ const HomePage: React.FC = () => {
       <Suspense fallback={<div className="h-64 bg-gray-50 animate-pulse" />}>
         <FAQ />
       </Suspense>
+      
+      {/* Contact Form Section */}
+      <section id="contact-form" className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-white/90 to-green-50/90"></div>
+          <img 
+            src="/images/person-sleeping-bed-tiny-house.webp" 
+            alt="Kontakt Hintergrund" 
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ContactForm />
+        </div>
+      </section>
     </main>
   );
 };

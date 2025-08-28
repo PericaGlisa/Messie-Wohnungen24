@@ -38,7 +38,7 @@ const WhatsAppFloat = () => {
       
       {/* Contact Form Button */}
       <a
-        href="/kontakt"
+        href="#contact-form"
         className="bg-orange-600 hover:bg-orange-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center"
         aria-label="Kontakt Formular"
       >

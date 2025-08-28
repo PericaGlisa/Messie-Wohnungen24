@@ -30,7 +30,7 @@ const StatisticsSection: React.FC<StatisticsSectionProps> = ({ stats }) => {
           Wir arbeiten sorgfältig, professionell und mit viel Mitgefühl – denn wir glauben, dass das Reinigen eines 
           Raumes auch bedeutet, die Türen zu einem neuen, besseren Lebensabschnitt zu öffnen.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">

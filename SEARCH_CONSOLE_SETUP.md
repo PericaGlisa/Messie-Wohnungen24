@@ -28,12 +28,12 @@
 **Sitemap Contents:**
 - Homepage: `/` (Priority: 1.0)
 - Services: `/#services` (Priority: 0.8)
-- About: `/#about` (Priority: 0.8)
+- About Us: `/ueber-uns` (Priority: 0.8) - **Separate page**
 - Process: `/#process` (Priority: 0.7)
 - Gallery: `/#gallery` (Priority: 0.7)
 - Testimonials: `/#testimonials` (Priority: 0.6)
 - FAQ: `/#faq` (Priority: 0.6)
-- Contact: `/#contact` (Priority: 0.9)
+- Contact: `/kontakt` (Priority: 0.9) - **Separate page**
 
 ### 3. Robots.txt Verification
 

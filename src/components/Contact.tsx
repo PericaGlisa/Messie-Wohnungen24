@@ -27,17 +27,23 @@ const Contact = () => {
 
   return (
     <section id="kontakt" className="relative py-16 lg:py-24 bg-gradient-to-br from-blue-50 via-blue-100 to-green-50 overflow-hidden">
-      {/* Background Image - Barely Visible */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/95 via-blue-100/95 to-green-50/95"></div>
+      {/* Background Image */}
+      <div className="absolute inset-0 z-10">
         <img 
-          src="/images/person-sleeping-bed-tiny-house.png" 
+          src="/images/17.webp" 
+          srcSet="
+            /images/optimized/17-320w.webp 320w,
+            /images/optimized/17-480w.webp 480w,
+            /images/optimized/17-768w.webp 768w,
+            /images/optimized/17-1024w.webp 1024w
+          "
+          sizes="100vw"
           alt="Kontakt Hintergrund" 
-          className="w-full h-full object-cover opacity-10"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
       </div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Shield className="w-4 h-4" />

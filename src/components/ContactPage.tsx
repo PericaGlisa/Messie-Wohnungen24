@@ -162,9 +162,16 @@ const ContactPage: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-white/90 to-green-50/90"></div>
           <img 
-            src="/images/person-sleeping-bed-tiny-house.webp" 
+            src="/images/17.webp" 
+            srcSet="
+              /images/optimized/17-320w.webp 320w,
+              /images/optimized/17-480w.webp 480w,
+              /images/optimized/17-768w.webp 768w,
+              /images/optimized/17-1024w.webp 1024w
+            "
+            sizes="100vw"
             alt="Kontakt Hintergrund" 
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-30"
           />
         </div>
         

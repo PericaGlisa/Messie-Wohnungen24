@@ -71,29 +71,42 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
             </button>
           </div>
           
-          {/* Before/After Gallery */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-            <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Vorher</h4>
+          {/* Image Gallery */}
+          {service.beforeAfter.single ? (
+            <div className="mb-6 sm:mb-8">
+              <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Projektbild</h4>
               <LazyImage 
-                src={service.beforeAfter.before}
-                alt="Vorher"
-                className="w-full h-40 sm:h-48 object-cover rounded-lg"
+                src={service.beforeAfter.single}
+                alt={service.title}
+                className="w-full h-64 sm:h-80 object-cover rounded-lg mx-auto"
                 priority="high"
-                sizes="(max-width: 640px) 100vw, 50vw"
+                sizes="100vw"
               />
             </div>
-            <div>
-              <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Nachher</h4>
-              <LazyImage 
-                src={service.beforeAfter.after}
-                alt="Nachher"
-                className="w-full h-40 sm:h-48 object-cover rounded-lg"
-                priority="high"
-                sizes="(max-width: 640px) 100vw, 50vw"
-              />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+              <div>
+                <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Vorher</h4>
+                <LazyImage 
+                  src={service.beforeAfter.before}
+                  alt="Vorher"
+                  className="w-full h-40 sm:h-48 object-cover rounded-lg"
+                  priority="high"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+              </div>
+              <div>
+                <h4 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-gray-700">Nachher</h4>
+                <LazyImage 
+                  src={service.beforeAfter.after}
+                  alt="Nachher"
+                  className="w-full h-40 sm:h-48 object-cover rounded-lg"
+                  priority="high"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+              </div>
             </div>
-          </div>
+          )}
           
           {/* Customer Testimonial */}
           <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-4 sm:mb-6">
@@ -155,78 +168,78 @@ const Services = React.memo(() => {
       icon: Home,
       title: 'Vollständige Entrümpelung',
       description: 'Professionelle Räumung aller Räume mit größter Sorgfalt und Diskretion.',
-      image: '/images/fragment-photo-children-s-room-with-scattered-things-toys.webp',
+      image: '/images/10.webp',
       duration: '1-3 Tage',
       process: ['Besichtigung & Kostenvoranschlag', 'Sortierung & Kategorisierung', 'Fachgerechte Entrümpelung', 'Endreinigung'],
       guarantee: 'Festpreisgarantie',
       rating: 4.9,
       reviews: 127,
-      beforeAfter: { before: '/images/fragment-photo-children-s-room-with-scattered-things-toys.jpg', after: '/images/man-living-tiny-house.png' },
+      beforeAfter: { before: '/images/9.webp', after: '/images/10.webp' },
       testimonial: '"Sehr professionell und diskret. Bin sehr zufrieden!" - Maria K.'
     },
     {
       icon: Sparkles,
       title: 'Tiefenreinigung',
       description: 'Gründliche Reinigung nach der Entrümpelung für einen Neuanfang.',
-      image: '/images/messy-interior-full-clothing.webp',
+      image: '/images/2.webp',
       duration: '4-8 Std',
       process: ['Grobreinigung', 'Spezialreinigung', 'Desinfektion', 'Qualitätskontrolle'],
       guarantee: 'Zufriedenheitsgarantie',
       rating: 4.8,
       reviews: 89,
-      beforeAfter: { before: '/images/messy-interior-full-clothing.jpg', after: '/images/person-sleeping-bed-tiny-house.png' },
+      beforeAfter: { before: '/images/1.webp', after: '/images/2.webp' },
       testimonial: '"Endlich wieder ein sauberes Zuhause!" - Thomas M.'
     },
     {
       icon: Shield,
       title: 'Desinfektion',
       description: 'Fachgerechte Desinfektion für ein hygienisch sauberes Zuhause.',
-      image: '/images/abandoned-house-cluttered-interior.webp',
+      image: '/images/21.webp',
       duration: '2-4 Std',
       process: ['Vorreinigung', 'Professionelle Desinfektion', 'Luftreinigung', 'Abschlusskontrolle'],
       guarantee: 'Hygienezertifikat',
       rating: 4.9,
       reviews: 8,
-      beforeAfter: { before: '/images/abandoned-house-cluttered-interior.webp', after: '/images/young-man-isolation-home.jpg' },
+      beforeAfter: { single: '/images/21.webp' },
       testimonial: '"Fühle mich wieder sicher in meinem Zuhause." - Anna L.'
     },
     {
       icon: Paintbrush,
       title: 'Renovierungsarbeiten',
       description: 'Kleinere Renovierungen und Instandsetzungen nach Bedarf.',
-      image: '/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.png',
+      image: '/images/12.webp',
       duration: '1-5 Tage',
       process: ['Schadensbewertung', 'Materialplanung', 'Renovierungsarbeiten', 'Qualitätsprüfung'],
       guarantee: '2 Jahre Gewährleistung',
       rating: 4.7,
       reviews: 73,
-      beforeAfter: { before: '/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.png', after: '/images/man-living-tiny-house.png' },
+      beforeAfter: { before: '/images/11.webp', after: '/images/12.webp' },
       testimonial: '"Wie neu! Sehr zufrieden mit der Qualität." - Peter S.'
     },
     {
       icon: Truck,
       title: 'Fachgerechte Entsorgung',
       description: 'Umweltgerechte Entsorgung und Recycling aller Materialien.',
-      image: '/images/miscellaneous-items-being-sold-yard-sale.jpg',
+      image: '/images/22.webp',
       duration: '1-2 Std',
       process: ['Sortierung nach Materialien', 'Recycling-Vorbereitung', 'Fachgerechte Entsorgung', 'Entsorgungsnachweis'],
       guarantee: 'Umweltzertifikat',
       rating: 4.8,
       reviews: 201,
-      beforeAfter: { before: '/images/miscellaneous-items-being-sold-yard-sale.jpg', after: '/images/young-man-isolation-home.jpg' },
+      beforeAfter: { single: '/images/22.webp' },
       testimonial: '"Umweltbewusst und zuverlässig." - Sandra W.'
     },
     {
       icon: Handshake,
       title: 'Diskrete Abwicklung',
       description: 'Verständnisvolle Betreuung ohne Vorurteile oder Bewertungen.',
-      image: '/images/anxiety-induced-by-clutter-house.jpg',
+      image: '/images/14.webp',
       duration: 'Durchgehend',
       process: ['Vertrauliche Beratung', 'Diskrete Terminplanung', 'Sensible Durchführung', 'Nachbetreuung'],
       guarantee: 'Verschwiegenheitserklärung',
       rating: 5.0,
       reviews: 312,
-      beforeAfter: { before: '/images/anxiety-induced-by-clutter-house.jpg', after: '/images/person-sleeping-bed-tiny-house.png' },
+      beforeAfter: { before: '/images/13.webp', after: '/images/14.webp' },
       testimonial: '"Endlich jemand, der versteht. Danke!" - Michael R.'
     }
   ], []);

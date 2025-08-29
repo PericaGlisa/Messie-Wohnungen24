@@ -31,8 +31,8 @@ const HomePage: React.FC = () => {
       date: "März 2024",
       verified: true,
       duration: "3 Tage",
-      beforeImage: "/images/messy-interior-full-clothing (1).jpg",
-    afterImage: "/images/person-sleeping-bed-tiny-house.png",
+      beforeImage: "/images/3.webp",
+    afterImage: "/images/4.webp",
       helpfulVotes: 23
     },
     {
@@ -44,8 +44,8 @@ const HomePage: React.FC = () => {
       date: "Februar 2024",
       verified: true,
       duration: "2 Tage",
-      beforeImage: "/images/car-with-clothes-pile-top-it.jpg",
-    afterImage: "/images/scene-with-miscellaneous-items-being-sold-yard-sale-bargains (1).jpg",
+      beforeImage: "/images/5.webp",
+    afterImage: "/images/6.webp",
       helpfulVotes: 18
     },
     {
@@ -57,8 +57,8 @@ const HomePage: React.FC = () => {
       date: "Januar 2024",
       verified: true,
       duration: "4 Tage",
-      beforeImage: "/images/fast-fashion-concept-with-piles-clothes (1).jpg",
-    afterImage: "/images/person-sleeping-bed-tiny-house.png",
+      beforeImage: "/images/7.webp",
+    afterImage: "/images/8.webp",
       helpfulVotes: 31
     },
     {
@@ -70,8 +70,8 @@ const HomePage: React.FC = () => {
       date: "Dezember 2023",
       verified: true,
       duration: "5 Tage",
-      beforeImage: "/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.png",
-    afterImage: "/images/man-living-tiny-house.png",
+      beforeImage: "/images/13.webp",
+    afterImage: "/images/14.webp",
       helpfulVotes: 27
     },
     {
@@ -83,8 +83,8 @@ const HomePage: React.FC = () => {
       date: "November 2023",
       verified: true,
       duration: "6 Tage",
-      beforeImage: "/images/high-angle-house-interior-with-clutter.jpg",
-    afterImage: "/images/scene-with-miscellaneous-items-being-sold-yard-sale-bargains (2).jpg",
+      beforeImage: "/images/19.webp",
+    afterImage: "/images/20.webp",
       helpfulVotes: 19
     },
     {
@@ -96,8 +96,8 @@ const HomePage: React.FC = () => {
       date: "Oktober 2023",
       verified: true,
       duration: "3 Tage",
-      beforeImage: "/images/picture-girl-s-children-s-room-with-strong-mess.png",
-    afterImage: "/images/miscellaneous-items-being-sold-yard-sale (1).png",
+      beforeImage: "/images/17.webp",
+    afterImage: "/images/18.webp",
       helpfulVotes: 22
     }
   ];
@@ -122,9 +122,16 @@ const HomePage: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-white/90 to-green-50/90"></div>
           <img 
-            src="/images/person-sleeping-bed-tiny-house.webp" 
+            src="/images/17.webp" 
+            srcSet="
+              /images/optimized/17-320w.webp 320w,
+              /images/optimized/17-480w.webp 480w,
+              /images/optimized/17-768w.webp 768w,
+              /images/optimized/17-1024w.webp 1024w
+            "
+            sizes="100vw"
             alt="Kontakt Hintergrund" 
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-30"
           />
         </div>
         

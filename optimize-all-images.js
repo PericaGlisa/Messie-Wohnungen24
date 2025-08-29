@@ -52,25 +52,31 @@ async function optimizeAllImages() {
       
       console.log(`🔄 Optimizing ${imageName}...`);
       
-      for (const size of sizes) {
-        const baseName = path.parse(imageName).name;
-        const outputPath = path.join(outputDir, `${baseName}${size.suffix}.webp`);
+      try {
+        for (const size of sizes) {
+          const baseName = path.parse(imageName).name;
+          const outputPath = path.join(outputDir, `${baseName}${size.suffix}.webp`);
+          
+          await sharp(inputPath)
+            .resize(size.width, null, {
+              withoutEnlargement: true,
+              fit: 'inside'
+            })
+            .webp({
+              quality: size.quality,
+              effort: 6
+            })
+            .toFile(outputPath);
+          
+          totalOptimized++;
+        }
         
-        await sharp(inputPath)
-          .resize(size.width, null, {
-            withoutEnlargement: true,
-            fit: 'inside'
-          })
-          .webp({
-            quality: size.quality,
-            effort: 6
-          })
-          .toFile(outputPath);
-        
-        totalOptimized++;
+        console.log(`✓ Generated 4 sizes for ${imageName}`);
+      } catch (imageError) {
+        console.log(`❌ Error optimizing ${imageName}: ${imageError.message}`);
+        console.log(`⚠️  Skipping ${imageName} and continuing with next image...`);
+        continue;
       }
-      
-      console.log(`✓ Generated 4 sizes for ${imageName}`);
     }
     
     console.log(`\n✅ Image optimization completed!`);

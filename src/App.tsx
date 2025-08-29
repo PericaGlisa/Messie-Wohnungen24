@@ -4,6 +4,7 @@ import Header from './components/Header';
 import HomePage from './components/HomePage';
 import AboutUsPage from './components/AboutUsPage';
 import ContactPage from './components/ContactPage';
+import ThankYou from './components/ThankYou';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import { initializeImagePreloading } from './utils/performance';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/ueber-uns" element={<AboutUsPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
+          <Route path="/danke" element={<ThankYou />} />
         </Routes>
         <Footer />
         <WhatsAppFloat />

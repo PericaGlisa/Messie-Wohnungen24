@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Send, Shield, CheckCircle, Users, Upload } from 'lucide-react';
 
 const ContactForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -18,10 +20,41 @@ const ContactForm = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setSubmitMessage('');
+
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        // Redirect to thank you page
+        navigate('/danke');
+      } else {
+        setSubmitStatus('error');
+        setSubmitMessage(result.error || 'Došlo je do greške pri slanju poruke. Molimo pokušajte ponovo.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+      setSubmitMessage('Došlo je do greške pri slanju poruke. Molimo pokušajte ponovo.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -46,12 +79,59 @@ const ContactForm = () => {
     });
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
+    if (!files) {
+      setFormData(prev => ({ ...prev, photos: null }));
+      return;
+    }
+
+    // Convert files to base64
+    const base64Files = [];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      // Check file size (max 5MB per file)
+      if (file.size > 5 * 1024 * 1024) {
+        alert(`Datei ${file.name} ist zu groß. Maximale Größe ist 5MB.`);
+        continue;
+      }
+      
+      try {
+        const base64 = await convertToBase64(file);
+        base64Files.push({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          data: base64
+        });
+      } catch (error) {
+        console.error('Error converting file to base64:', error);
+        alert(`Fehler beim Verarbeiten der Datei ${file.name}`);
+      }
+    }
+
     setFormData(prev => ({
       ...prev,
-      photos: files
+      photos: base64Files.length > 0 ? base64Files : null
     }));
+  };
+
+  // Helper function to convert file to base64
+  const convertToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          // Remove the data:image/jpeg;base64, prefix
+          const base64 = reader.result.split(',')[1];
+          resolve(base64);
+        } else {
+          reject(new Error('Failed to convert file to base64'));
+        }
+      };
+      reader.onerror = error => reject(error);
+    });
   };
 
   return (
@@ -222,24 +302,16 @@ const ContactForm = () => {
                 <label htmlFor="area" className="block text-sm font-medium text-gray-700 mb-2">
                   Welche Fläche soll entrümpelt werden? *
                 </label>
-                <select
+                <input
+                  type="text"
                   id="area"
                   name="area"
                   value={formData.area}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
-                >
-                  <option value="">Bitte wählen</option>
-                  <option value="10">10 m²</option>
-                  <option value="20">20 m²</option>
-                  <option value="30">30 m²</option>
-                  <option value="50">50 m²</option>
-                  <option value="80">80 m²</option>
-                  <option value="100">100 m²</option>
-                  <option value="200">200 m²</option>
-                  <option value="mehr">mehr</option>
-                </select>
+                  placeholder="z.B. 50 m²"
+                />
               </div>
 
               {/* Question 3: Aus welchen Etagen soll entrümpelt werden? */}
@@ -354,7 +426,12 @@ const ContactForm = () => {
                   </label>
                   {formData.photos && (
                     <p className="text-sm text-green-600 mt-2">
-                      {formData.photos.length} Datei(en) ausgewählt
+                      {Array.isArray(formData.photos) ? formData.photos.length : 0} Datei(en) ausgewählt
+                      {Array.isArray(formData.photos) && formData.photos.length > 0 && (
+                        <span className="block text-xs text-gray-500 mt-1">
+                          {formData.photos.map(file => file.name).join(', ')}
+                        </span>
+                      )}
                     </p>
                   )}
                 </div>
@@ -376,12 +453,28 @@ const ContactForm = () => {
                 />
               </div>
 
+              {/* Status Message */}
+              {submitMessage && (
+                <div className={`p-4 rounded-lg text-center ${
+                  submitStatus === 'success' 
+                    ? 'bg-green-100 text-green-800 border border-green-200' 
+                    : 'bg-red-100 text-red-800 border border-red-200'
+                }`}>
+                  {submitMessage}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg transform hover:scale-105 text-base"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-4 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg text-base ${
+                  isSubmitting 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transform hover:scale-105'
+                }`}
               >
                 <Send className="w-5 h-5" />
-                <span>Kostenlose Beratung anfragen</span>
+                <span>{isSubmitting ? 'Šalje se...' : 'Kostenlose Beratung anfragen'}</span>
               </button>
 
               <div className="bg-gray-50 p-4 rounded-lg">

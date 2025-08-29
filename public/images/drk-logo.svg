@@ -1,7 +1,0 @@
-<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="80" height="80" rx="8" fill="#DC2626"/>
-  <path d="M40 15 L50 30 L40 45 L30 30 Z" fill="white"/>
-  <rect x="35" y="25" width="10" height="15" fill="#DC2626"/>
-  <rect x="30" y="30" width="20" height="5" fill="#DC2626"/>
-  <text x="40" y="70" text-anchor="middle" fill="white" font-size="8" font-weight="bold">DRK</text>
-</svg>

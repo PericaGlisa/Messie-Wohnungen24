@@ -14,12 +14,12 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-green-900/60 z-10"></div>
         <div className="absolute inset-0 w-full h-full">
           <img 
-            src="/images/high-angle-house-interior-with-clutter.webp" 
+            src="/images/abandoned-house-cluttered-interior.webp" 
             srcSet="
-              /images/optimized/high-angle-house-interior-with-clutter-480w.webp 480w,
-              /images/optimized/high-angle-house-interior-with-clutter-768w.webp 768w,
-              /images/optimized/high-angle-house-interior-with-clutter-1280w.webp 1280w,
-              /images/optimized/high-angle-house-interior-with-clutter-1920w.webp 1920w
+              /images/optimized/abandoned-house-cluttered-interior-320w.webp 320w,
+              /images/optimized/abandoned-house-cluttered-interior-480w.webp 480w,
+              /images/optimized/abandoned-house-cluttered-interior-768w.webp 768w,
+              /images/optimized/abandoned-house-cluttered-interior-1024w.webp 1024w
             "
             sizes="100vw"
             alt="Professionelle Entrümpelung" 

@@ -46,12 +46,12 @@ const ContactForm = () => {
         navigate('/danke');
       } else {
         setSubmitStatus('error');
-        setSubmitMessage(result.error || 'Došlo je do greške pri slanju poruke. Molimo pokušajte ponovo.');
+        setSubmitMessage(result.error || 'Beim Senden der Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
-      setSubmitMessage('Došlo je do greške pri slanju poruke. Molimo pokušajte ponovo.');
+      setSubmitMessage('Beim Senden der Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');
     } finally {
       setIsSubmitting(false);
     }
@@ -474,7 +474,7 @@ const ContactForm = () => {
                 }`}
               >
                 <Send className="w-5 h-5" />
-                <span>{isSubmitting ? 'Šalje se...' : 'Kostenlose Beratung anfragen'}</span>
+                <span>{isSubmitting ? 'Wird gesendet...' : 'Kostenlose Beratung anfragen'}</span>
               </button>
 
               <div className="bg-gray-50 p-4 rounded-lg">

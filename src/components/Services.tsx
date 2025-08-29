@@ -161,7 +161,7 @@ const Services = React.memo(() => {
       guarantee: 'Festpreisgarantie',
       rating: 4.9,
       reviews: 127,
-      beforeAfter: { before: '/images/fragment-photo-children-s-room-with-scattered-things-toys.webp', after: '/images/man-living-tiny-house.webp' },
+      beforeAfter: { before: '/images/fragment-photo-children-s-room-with-scattered-things-toys.jpg', after: '/images/man-living-tiny-house.png' },
       testimonial: '"Sehr professionell und diskret. Bin sehr zufrieden!" - Maria K.'
     },
     {
@@ -174,7 +174,7 @@ const Services = React.memo(() => {
       guarantee: 'Zufriedenheitsgarantie',
       rating: 4.8,
       reviews: 89,
-      beforeAfter: { before: '/images/messy-interior-full-clothing.webp', after: '/images/person-sleeping-bed-tiny-house.webp' },
+      beforeAfter: { before: '/images/messy-interior-full-clothing.jpg', after: '/images/person-sleeping-bed-tiny-house.png' },
       testimonial: '"Endlich wieder ein sauberes Zuhause!" - Thomas M.'
     },
     {
@@ -187,46 +187,46 @@ const Services = React.memo(() => {
       guarantee: 'Hygienezertifikat',
       rating: 4.9,
       reviews: 8,
-      beforeAfter: { before: '/images/abandoned-house-cluttered-interior.webp', after: '/images/young-man-isolation-home.webp' },
+      beforeAfter: { before: '/images/abandoned-house-cluttered-interior.webp', after: '/images/young-man-isolation-home.jpg' },
       testimonial: '"Fühle mich wieder sicher in meinem Zuhause." - Anna L.'
     },
     {
       icon: Paintbrush,
       title: 'Renovierungsarbeiten',
       description: 'Kleinere Renovierungen und Instandsetzungen nach Bedarf.',
-      image: '/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.webp',
+      image: '/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.png',
       duration: '1-5 Tage',
       process: ['Schadensbewertung', 'Materialplanung', 'Renovierungsarbeiten', 'Qualitätsprüfung'],
       guarantee: '2 Jahre Gewährleistung',
       rating: 4.7,
       reviews: 73,
-      beforeAfter: { before: '/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.webp', after: '/images/man-living-tiny-house.webp' },
+      beforeAfter: { before: '/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.png', after: '/images/man-living-tiny-house.png' },
       testimonial: '"Wie neu! Sehr zufrieden mit der Qualität." - Peter S.'
     },
     {
       icon: Truck,
       title: 'Fachgerechte Entsorgung',
       description: 'Umweltgerechte Entsorgung und Recycling aller Materialien.',
-      image: '/images/miscellaneous-items-being-sold-yard-sale.webp',
+      image: '/images/miscellaneous-items-being-sold-yard-sale.jpg',
       duration: '1-2 Std',
       process: ['Sortierung nach Materialien', 'Recycling-Vorbereitung', 'Fachgerechte Entsorgung', 'Entsorgungsnachweis'],
       guarantee: 'Umweltzertifikat',
       rating: 4.8,
       reviews: 201,
-      beforeAfter: { before: '/images/miscellaneous-items-being-sold-yard-sale.webp', after: '/images/young-man-isolation-home.webp' },
+      beforeAfter: { before: '/images/miscellaneous-items-being-sold-yard-sale.jpg', after: '/images/young-man-isolation-home.jpg' },
       testimonial: '"Umweltbewusst und zuverlässig." - Sandra W.'
     },
     {
       icon: Handshake,
       title: 'Diskrete Abwicklung',
       description: 'Verständnisvolle Betreuung ohne Vorurteile oder Bewertungen.',
-      image: '/images/anxiety-induced-by-clutter-house.webp',
+      image: '/images/anxiety-induced-by-clutter-house.jpg',
       duration: 'Durchgehend',
       process: ['Vertrauliche Beratung', 'Diskrete Terminplanung', 'Sensible Durchführung', 'Nachbetreuung'],
       guarantee: 'Verschwiegenheitserklärung',
       rating: 5.0,
       reviews: 312,
-      beforeAfter: { before: '/images/anxiety-induced-by-clutter-house.webp', after: '/images/person-sleeping-bed-tiny-house.webp' },
+      beforeAfter: { before: '/images/anxiety-induced-by-clutter-house.jpg', after: '/images/person-sleeping-bed-tiny-house.png' },
       testimonial: '"Endlich jemand, der versteht. Danke!" - Michael R.'
     }
   ], []);

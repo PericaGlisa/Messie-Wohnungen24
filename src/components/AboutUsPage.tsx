@@ -119,7 +119,7 @@ const AboutUsPage: React.FC = () => {
             <div className="relative">
               <div className="bg-blue-100 rounded-2xl p-8">
                 <LazyImage
-                  src="/images/man-living-tiny-house.webp"
+                  src="/images/man-living-tiny-house.png"
                   alt="Unser professionelles Team"
                   className="w-full h-64 object-cover rounded-lg"
                   loading="lazy"
@@ -196,7 +196,7 @@ const AboutUsPage: React.FC = () => {
             <div className="relative">
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <LazyImage
-                  src="/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.webp"
+                  src="/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.png"
                   alt="Messie-Wohnung vor der Reinigung"
                   className="w-full h-64 object-cover rounded-lg"
                   loading="lazy"

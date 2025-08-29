@@ -6,27 +6,16 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// List of all images that need optimization
-const imagesToOptimize = [
-  'messy-interior-full-clothing.webp',
-  'messy-interior-full-clothing (1).webp',
-  'abandoned-house-cluttered-interior.webp',
-  'car-with-clothes-pile-top-it.webp',
-  'fragment-photo-children-s-room-with-scattered-things-toys.webp',
-  'messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.webp',
-  'anxiety-induced-by-clutter-house.webp',
-  'miscellaneous-items-being-sold-yard-sale.webp',
-  'miscellaneous-items-being-sold-yard-sale (1).webp',
-  'scene-with-miscellaneous-items-being-sold-yard-sale-bargains.webp',
-  'scene-with-miscellaneous-items-being-sold-yard-sale-bargains (1).webp',
-  'scene-with-miscellaneous-items-being-sold-yard-sale-bargains (2).webp',
-  'fast-fashion-concept-with-piles-clothes.webp',
-  'fast-fashion-concept-with-piles-clothes (1).webp',
-  'picture-girl-s-children-s-room-with-strong-mess.webp',
-  'person-sleeping-bed-tiny-house.webp',
-  'man-living-tiny-house.webp',
-  'young-man-isolation-home.webp'
-];
+// Function to get all image files from the images directory
+function getImageFiles(dir) {
+  const files = fs.readdirSync(dir);
+  return files.filter(file => {
+    const ext = path.extname(file).toLowerCase();
+    return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext) && 
+           !file.startsWith('.') && 
+           file !== 'optimized'; // Skip the optimized folder
+  });
+}
 
 // Image optimization script for all images
 async function optimizeAllImages() {
@@ -48,6 +37,10 @@ async function optimizeAllImages() {
   let totalOptimized = 0;
   
   try {
+    // Get all image files from the input directory
+    const imagesToOptimize = getImageFiles(inputDir);
+    console.log(`📁 Found ${imagesToOptimize.length} images to optimize`);
+    
     for (const imageName of imagesToOptimize) {
       const inputPath = path.join(inputDir, imageName);
       

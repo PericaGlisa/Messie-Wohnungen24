@@ -31,8 +31,8 @@ const HomePage: React.FC = () => {
       date: "März 2024",
       verified: true,
       duration: "3 Tage",
-      beforeImage: "/images/messy-interior-full-clothing (1).webp",
-      afterImage: "/images/person-sleeping-bed-tiny-house.webp",
+      beforeImage: "/images/messy-interior-full-clothing (1).jpg",
+    afterImage: "/images/person-sleeping-bed-tiny-house.png",
       helpfulVotes: 23
     },
     {
@@ -44,8 +44,8 @@ const HomePage: React.FC = () => {
       date: "Februar 2024",
       verified: true,
       duration: "2 Tage",
-      beforeImage: "/images/car-with-clothes-pile-top-it.webp",
-      afterImage: "/images/scene-with-miscellaneous-items-being-sold-yard-sale-bargains (1).webp",
+      beforeImage: "/images/car-with-clothes-pile-top-it.jpg",
+    afterImage: "/images/scene-with-miscellaneous-items-being-sold-yard-sale-bargains (1).jpg",
       helpfulVotes: 18
     },
     {
@@ -57,8 +57,8 @@ const HomePage: React.FC = () => {
       date: "Januar 2024",
       verified: true,
       duration: "4 Tage",
-      beforeImage: "/images/fast-fashion-concept-with-piles-clothes (1).webp",
-      afterImage: "/images/person-sleeping-bed-tiny-house.webp",
+      beforeImage: "/images/fast-fashion-concept-with-piles-clothes (1).jpg",
+    afterImage: "/images/person-sleeping-bed-tiny-house.png",
       helpfulVotes: 31
     },
     {
@@ -70,8 +70,8 @@ const HomePage: React.FC = () => {
       date: "Dezember 2023",
       verified: true,
       duration: "5 Tage",
-      beforeImage: "/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.webp",
-      afterImage: "/images/man-living-tiny-house.webp",
+      beforeImage: "/images/messy-room-disorder-concept-living-room-bedroom-scattered-clothes-stuff-floor.png",
+    afterImage: "/images/man-living-tiny-house.png",
       helpfulVotes: 27
     },
     {
@@ -83,8 +83,8 @@ const HomePage: React.FC = () => {
       date: "November 2023",
       verified: true,
       duration: "6 Tage",
-      beforeImage: "/images/high-angle-house-interior-with-clutter.webp",
-      afterImage: "/images/scene-with-miscellaneous-items-being-sold-yard-sale-bargains (2).webp",
+      beforeImage: "/images/high-angle-house-interior-with-clutter.jpg",
+    afterImage: "/images/scene-with-miscellaneous-items-being-sold-yard-sale-bargains (2).jpg",
       helpfulVotes: 19
     },
     {
@@ -96,8 +96,8 @@ const HomePage: React.FC = () => {
       date: "Oktober 2023",
       verified: true,
       duration: "3 Tage",
-      beforeImage: "/images/picture-girl-s-children-s-room-with-strong-mess.webp",
-      afterImage: "/images/miscellaneous-items-being-sold-yard-sale (1).webp",
+      beforeImage: "/images/picture-girl-s-children-s-room-with-strong-mess.png",
+    afterImage: "/images/miscellaneous-items-being-sold-yard-sale (1).png",
       helpfulVotes: 22
     }
   ];

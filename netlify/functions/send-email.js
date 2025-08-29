@@ -33,32 +33,32 @@ exports.handler = async (event, context) => {
     if (!email || !city || !postalCode || !clearingTypes || !area || !floors) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Nedostaju obavezna polja' })
+        body: JSON.stringify({ error: 'Erforderliche Felder fehlen' })
       };
     }
 
     // Format the email content
     const emailContent = `
-      <h2>Nova kontakt forma sa Messie-Wohnungen24.de</h2>
+      <h2>Neue Kontaktanfrage von Messie-Wohnungen24.de</h2>
       
-      <h3>Kontakt informacije:</h3>
-      <p><strong>Ime:</strong> ${name || 'Nije navedeno'}</p>
-      <p><strong>Prezime:</strong> ${surname || 'Nije navedeno'}</p>
-      <p><strong>Telefon:</strong> ${phone || 'Nije navedeno'}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Grad:</strong> ${city}</p>
-      <p><strong>Poštanski broj:</strong> ${postalCode}</p>
+      <h3>Kontaktinformationen:</h3>
+      <p><strong>Vorname:</strong> ${name || 'Nicht angegeben'}</p>
+      <p><strong>Nachname:</strong> ${surname || 'Nicht angegeben'}</p>
+      <p><strong>Telefon:</strong> ${phone || 'Nicht angegeben'}</p>
+      <p><strong>E-Mail:</strong> ${email}</p>
+      <p><strong>Stadt:</strong> ${city}</p>
+      <p><strong>Postleitzahl:</strong> ${postalCode}</p>
       
-      <h3>Detalji o entrümpelung:</h3>
-      <p><strong>Šta treba da se entrümpelt:</strong> ${Array.isArray(clearingTypes) ? clearingTypes.join(', ') : clearingTypes}</p>
-      <p><strong>Kvadratura:</strong> ${area}</p>
-      <p><strong>Spratovi:</strong> ${Array.isArray(floors) ? floors.join(', ') : floors}</p>
-      <p><strong>Lift:</strong> ${elevator || 'Nije navedeno'}</p>
-      <p><strong>Vreme:</strong> ${timing || 'Nije navedeno'}</p>
+      <h3>Details zur Entrümpelung:</h3>
+      <p><strong>Was soll entrümpelt werden:</strong> ${Array.isArray(clearingTypes) ? clearingTypes.join(', ') : clearingTypes}</p>
+      <p><strong>Quadratmeter:</strong> ${area}</p>
+      <p><strong>Stockwerke:</strong> ${Array.isArray(floors) ? floors.join(', ') : floors}</p>
+      <p><strong>Aufzug:</strong> ${elevator || 'Nicht angegeben'}</p>
+      <p><strong>Zeitrahmen:</strong> ${timing || 'Nicht angegeben'}</p>
       
-      ${message ? `<h3>Dodatna poruka:</h3><p>${message}</p>` : ''}
+      ${message ? `<h3>Zusätzliche Nachricht:</h3><p>${message}</p>` : ''}
       
-      ${photos && Array.isArray(photos) && photos.length > 0 ? `<h3>Prilozi:</h3><p>Klijent je poslao ${photos.length} sliku/a prostorija.</p>` : ''}
+      ${photos && Array.isArray(photos) && photos.length > 0 ? `<h3>Anhänge:</h3><p>Der Kunde hat ${photos.length} Bild(er) der Räumlichkeiten gesendet.</p>` : ''}
     `;
 
     // Prepare attachments if photos exist
@@ -80,7 +80,7 @@ exports.handler = async (event, context) => {
     const emailData = {
       from: 'kontakt@messie-wohnungen24.de',
       to: ['info@messie-wohnungen24.de'], // Replace with your actual email
-      subject: `Nova kontakt forma - ${city}`,
+      subject: `Neue Kontaktanfrage - ${city}`,
       html: emailContent,
       replyTo: email
     };
@@ -101,7 +101,7 @@ exports.handler = async (event, context) => {
       },
       body: JSON.stringify({ 
         success: true, 
-        message: 'Email je uspešno poslat',
+        message: 'E-Mail wurde erfolgreich gesendet',
         id: result.id 
       })
     };
@@ -118,7 +118,7 @@ exports.handler = async (event, context) => {
       },
       body: JSON.stringify({ 
         success: false, 
-        error: 'Greška pri slanju emaila' 
+        error: 'Fehler beim Senden der E-Mail' 
       })
     };
   }

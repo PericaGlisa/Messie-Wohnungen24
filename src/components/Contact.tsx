@@ -31,7 +31,7 @@ const Contact = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/95 via-blue-100/95 to-green-50/95"></div>
         <img 
-          src="/images/person-sleeping-bed-tiny-house.webp" 
+          src="/images/person-sleeping-bed-tiny-house.png" 
           alt="Kontakt Hintergrund" 
           className="w-full h-full object-cover opacity-10"
         />

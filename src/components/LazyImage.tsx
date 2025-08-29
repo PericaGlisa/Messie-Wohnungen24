@@ -38,12 +38,12 @@ const LazyImage: React.FC<LazyImageProps> = ({
     const fileName = baseSrc.split('/').pop()?.replace(/\.(webp|jpg|jpeg|png)$/i, '') || '';
     
     // For hero image, use all available sizes
-    if (fileName === 'high-angle-house-interior-with-clutter') {
+    if (fileName === 'abandoned-house-cluttered-interior') {
       return [
+        `/images/optimized/${fileName}-320w.webp 320w`,
         `/images/optimized/${fileName}-480w.webp 480w`,
         `/images/optimized/${fileName}-768w.webp 768w`,
-        `/images/optimized/${fileName}-1280w.webp 1280w`,
-        `/images/optimized/${fileName}-1920w.webp 1920w`
+        `/images/optimized/${fileName}-1024w.webp 1024w`
       ].join(', ');
     }
     

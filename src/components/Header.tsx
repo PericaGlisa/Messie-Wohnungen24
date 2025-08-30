@@ -79,7 +79,7 @@ const Header = () => {
         <div className="animate-pulse">
           <div className="whitespace-nowrap animate-marquee">
             <span className="text-xs sm:text-sm font-bold px-4">
-              +++ AKTUELLE INFORMATION +++ Einführungsrabatt – 30% auf den ersten Auftrag bundesweit. Nur bis 30.08. buchen und 30% sparen – Einsatzdatum frei wählbar.
+              +++ AKTUELLE INFORMATION +++ Einführungsrabatt – 30% auf den ersten Auftrag bundesweit. Nur bis 15.09. buchen und 30% sparen – Einsatzdatum frei wählbar.
             </span>
           </div>
         </div>

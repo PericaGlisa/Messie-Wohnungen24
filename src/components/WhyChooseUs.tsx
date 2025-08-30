@@ -145,7 +145,7 @@ const WhyChooseUs: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+4915510333666"
+                href="tel:+4917670211430"
                 className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200"
               >
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -154,7 +154,7 @@ const WhyChooseUs: React.FC = () => {
                 Jetzt anrufen
               </a>
               <a
-                href="https://wa.me/4915510333666"
+                href="https://wa.me/4917670211430"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-3 border border-blue-600 text-base font-medium rounded-lg text-blue-600 bg-white hover:bg-blue-50 transition-colors duration-200"

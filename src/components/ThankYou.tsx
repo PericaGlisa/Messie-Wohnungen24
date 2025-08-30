@@ -32,7 +32,7 @@ const ThankYou: React.FC = () => {
           </Link>
           
           <a 
-            href="tel:+4915510333444" 
+            href="tel:+4917670211430" 
             className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center gap-2"
           >
             <Phone className="w-5 h-5" />

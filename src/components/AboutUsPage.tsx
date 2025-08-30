@@ -83,14 +83,14 @@ const AboutUsPage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+4915123456789"
+                href="tel:+4917670211430"
                 className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Jetzt anrufen
               </a>
               <a
-                href="https://wa.me/4915123456789"
+                href="https://wa.me/4917670211430"
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-5 h-5" />
@@ -298,7 +298,7 @@ const AboutUsPage: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+4915510333666"
+              href="tel:+4917670211430"
               className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-gray-900 bg-white hover:bg-gray-100 transition-colors duration-200"
             >
               <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -308,7 +308,7 @@ const AboutUsPage: React.FC = () => {
             </a>
             
             <a
-              href="https://wa.me/4915510333666"
+              href="https://wa.me/4917670211430"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-green-500 text-lg font-medium rounded-lg text-white bg-green-500 hover:bg-green-600 transition-colors duration-200"

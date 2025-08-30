@@ -14,7 +14,7 @@ const ContactPage: React.FC = () => {
       title: "Telefonischer Kontakt",
       description: "In vielen Fällen können wir Ihnen ein genaues Angebot auch ohne Vor-Ort-Termin machen.",
       action: "Jetzt anrufen",
-      link: "tel:+4915123456789",
+      link: "tel:+4917670211430",
       highlight: "Sofortige Beratung"
     },
     {
@@ -22,7 +22,7 @@ const ContactPage: React.FC = () => {
       title: "WhatsApp Nachricht",
       description: "Senden Sie uns einfach Ihre Anfrage per WhatsApp und erhalten Sie Ihr Angebot innerhalb weniger Stunden.",
       action: "WhatsApp öffnen",
-      link: "https://wa.me/4915123456789",
+      link: "https://wa.me/4917670211430",
       highlight: "Antwort in wenigen Stunden"
     },
     {
@@ -67,14 +67,14 @@ const ContactPage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+4915123456789"
+                href="tel:+4917670211430"
                 className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Jetzt anrufen
               </a>
               <a
-                href="https://wa.me/4915123456789"
+                href="https://wa.me/4917670211430"
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-5 h-5" />
@@ -191,14 +191,14 @@ const ContactPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+4915123456789"
+              href="tel:+4917670211430"
               className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
             >
               <Phone className="w-5 h-5" />
               +49 151 234 567 89
             </a>
             <a
-              href="https://wa.me/4915123456789"
+              href="https://wa.me/4917670211430"
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />

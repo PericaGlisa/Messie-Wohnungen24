@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
   // Sample data for StatisticsSection
   const stats = [
     { number: '500+', label: 'Erfolgreiche Projekte' },
-    { number: '100%', label: 'Kundenzufriedenheit' }
+    { number: '98%', label: 'Kundenzufriedenheit' }
   ];
 
   // Sample data for VirtualizedSuccessStories

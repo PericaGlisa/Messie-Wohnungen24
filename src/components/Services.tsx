@@ -378,10 +378,7 @@ const Services = React.memo(() => {
                       {service.title}
                     </h3>
                     
-                    {/* Description */}
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
-                      {service.description}
-                    </p>
+
                     
                     {/* Details Button */}
                     <button 

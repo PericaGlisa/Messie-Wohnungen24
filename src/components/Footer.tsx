@@ -110,6 +110,9 @@ const Footer = () => {
                 <li><a href="#testimonials" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>Kundenstimmen</span></a></li>
                 <li><a href="#faq" className="text-gray-300 hover:text-blue-400 transition-colors flex items-center space-x-2"><span>→</span><span>FAQ</span></a></li>
                 <li><Link to="/kontakt" className={`transition-colors flex items-center space-x-2 ${location.pathname === '/kontakt' ? 'text-blue-400 font-semibold' : 'text-gray-300 hover:text-blue-400'}`}><span>→</span><span>Kontakt</span></Link></li>
+                <li><Link to="/agb" className={`transition-colors flex items-center space-x-2 ${location.pathname === '/agb' ? 'text-blue-400 font-semibold' : 'text-gray-300 hover:text-blue-400'}`}><span>→</span><span>AGB</span></Link></li>
+                <li><Link to="/datenschutz" className={`transition-colors flex items-center space-x-2 ${location.pathname === '/datenschutz' ? 'text-blue-400 font-semibold' : 'text-gray-300 hover:text-blue-400'}`}><span>→</span><span>Datenschutz</span></Link></li>
+                <li><Link to="/impressum" className={`transition-colors flex items-center space-x-2 ${location.pathname === '/impressum' ? 'text-blue-400 font-semibold' : 'text-gray-300 hover:text-blue-400'}`}><span>→</span><span>Impressum</span></Link></li>
               </ul>
 
             </div>

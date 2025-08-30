@@ -4,6 +4,9 @@ import Header from './components/Header';
 import HomePage from './components/HomePage';
 import AboutUsPage from './components/AboutUsPage';
 import ContactPage from './components/ContactPage';
+import AGBPage from './components/AGBPage';
+import DatenschutzPage from './components/DatenschutzPage';
+import ImpressumPage from './components/ImpressumPage';
 import ThankYou from './components/ThankYou';
 import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
@@ -23,6 +26,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/ueber-uns" element={<AboutUsPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
+          <Route path="/agb" element={<AGBPage />} />
+          <Route path="/datenschutz" element={<DatenschutzPage />} />
+          <Route path="/impressum" element={<ImpressumPage />} />
           <Route path="/danke" element={<ThankYou />} />
         </Routes>
         <Footer />

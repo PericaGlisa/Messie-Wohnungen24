@@ -60,12 +60,12 @@ const Header = () => {
   ];
 
   const services = [
-    { name: 'Vollständige Entrümpelung', href: '#leistungen' },
-    { name: 'Tiefenreinigung', href: '#leistungen' },
-    { name: 'Desinfektion', href: '#leistungen' },
-    { name: 'Renovierungsarbeiten', href: '#leistungen' },
-    { name: 'Fachgerechte Entsorgung', href: '#leistungen' },
-    { name: 'Diskrete Abwicklung', href: '#leistungen' },
+    { name: 'Vollständige Entrümpelung und Abtransport von Sperrmüll', href: '#leistungen' },
+    { name: 'Tiefen- und Spezialreinigung aller Oberflächen', href: '#leistungen' },
+    { name: 'Desinfektion der Räume für absolute Hygiene', href: '#leistungen' },
+    { name: 'Geruchsneutralisation', href: '#leistungen' },
+    { name: 'Entfernung alter Böden oder gründliche Reinigung der bestehenden', href: '#leistungen' },
+    { name: 'Malerarbeiten', href: '#leistungen' },
   ];
 
   return (

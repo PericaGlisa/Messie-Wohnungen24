@@ -1,28 +1,38 @@
 import React, { useEffect } from 'react';
+import { Building } from 'lucide-react';
 
 const ImpressumPage: React.FC = () => {
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = 'Impressum - Messie-Wohnungen24.de';
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
-            Impressum
-          </h1>
-          <p className="text-xl text-center text-blue-100">
-            Rechtliche Angaben
-          </p>
+      <section className="bg-gradient-to-br from-blue-700 via-blue-600 to-blue-700 text-white py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="flex justify-center mb-6">
+              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                <Building className="w-12 h-12 text-white" />
+              </div>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Impressum
+            </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Rechtliche Angaben gemäß § 5 TMG
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Content Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-8">
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
+            <div className="prose prose-lg max-w-none">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Angaben gemäß § 5 TMG</h2>
             
             <div className="space-y-6">
@@ -84,9 +94,10 @@ const ImpressumPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

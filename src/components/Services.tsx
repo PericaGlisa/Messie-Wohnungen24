@@ -166,7 +166,7 @@ const Services = React.memo(() => {
   const services = useMemo(() => [
     {
       icon: Home,
-      title: 'Vollständige Entrümpelung',
+      title: 'Vollständige Entrümpelung und Abtransport von Sperrmüll',
       description: 'Professionelle Räumung aller Räume mit größter Sorgfalt und Diskretion.',
       image: '/images/10.webp',
       duration: '1-3 Tage',
@@ -179,7 +179,7 @@ const Services = React.memo(() => {
     },
     {
       icon: Sparkles,
-      title: 'Tiefenreinigung',
+      title: 'Tiefen- und Spezialreinigung aller Oberflächen',
       description: 'Gründliche Reinigung nach der Entrümpelung für einen Neuanfang.',
       image: '/images/2.webp',
       duration: '4-8 Std',
@@ -192,7 +192,7 @@ const Services = React.memo(() => {
     },
     {
       icon: Shield,
-      title: 'Desinfektion',
+      title: 'Desinfektion der Räume für absolute Hygiene',
       description: 'Fachgerechte Desinfektion für ein hygienisch sauberes Zuhause.',
       image: '/images/21.webp',
       duration: '2-4 Std',
@@ -205,42 +205,42 @@ const Services = React.memo(() => {
     },
     {
       icon: Paintbrush,
-      title: 'Renovierungsarbeiten',
-      description: 'Kleinere Renovierungen und Instandsetzungen nach Bedarf.',
-      image: '/images/12.webp',
-      duration: '1-5 Tage',
-      process: ['Schadensbewertung', 'Materialplanung', 'Renovierungsarbeiten', 'Qualitätsprüfung'],
-      guarantee: '2 Jahre Gewährleistung',
+      title: 'Geruchsneutralisation',
+      description: 'Professionelle Beseitigung unangenehmer Gerüche für frische Raumluft.',
+      image: '/images/22.webp',
+      duration: '2-4 Std',
+      process: ['Geruchsanalyse', 'Spezialbehandlung', 'Neutralisation', 'Qualitätsprüfung'],
+      guarantee: 'Geruchsfreiheitsgarantie',
       rating: 4.7,
       reviews: 73,
-      beforeAfter: { before: '/images/11.webp', after: '/images/12.webp' },
-      testimonial: '"Wie neu! Sehr zufrieden mit der Qualität." - Peter S.'
+      beforeAfter: { single: '/images/22.webp' },
+      testimonial: '"Endlich wieder frische Luft!" - Peter S.'
     },
     {
       icon: Truck,
-      title: 'Fachgerechte Entsorgung',
-      description: 'Umweltgerechte Entsorgung und Recycling aller Materialien.',
-      image: '/images/22.webp',
-      duration: '1-2 Std',
-      process: ['Sortierung nach Materialien', 'Recycling-Vorbereitung', 'Fachgerechte Entsorgung', 'Entsorgungsnachweis'],
-      guarantee: 'Umweltzertifikat',
+      title: 'Entfernung alter Böden oder gründliche Reinigung der bestehenden',
+      description: 'Fachgerechte Bodenbehandlung für optimale Hygiene und Optik.',
+      image: '/images/20.webp',
+      duration: '1-3 Tage',
+      process: ['Zustandsbewertung', 'Entfernung/Reinigung', 'Grundbehandlung', 'Qualitätskontrolle'],
+      guarantee: 'Qualitätsgarantie',
       rating: 4.8,
       reviews: 201,
-      beforeAfter: { single: '/images/22.webp' },
-      testimonial: '"Umweltbewusst und zuverlässig." - Sandra W.'
+      beforeAfter: { before: '/images/19.webp', after: '/images/20.webp' },
+      testimonial: '"Perfekte Bodenbehandlung!" - Sandra W.'
     },
     {
       icon: Handshake,
-      title: 'Diskrete Abwicklung',
-      description: 'Verständnisvolle Betreuung ohne Vorurteile oder Bewertungen.',
-      image: '/images/14.webp',
-      duration: 'Durchgehend',
-      process: ['Vertrauliche Beratung', 'Diskrete Terminplanung', 'Sensible Durchführung', 'Nachbetreuung'],
-      guarantee: 'Verschwiegenheitserklärung',
+      title: 'Malerarbeiten',
+      description: 'Professionelle Malerarbeiten für den perfekten Abschluss.',
+      image: '/images/12.webp',
+      duration: '1-3 Tage',
+      process: ['Oberflächenvorbereitung', 'Grundierung', 'Anstricharbeiten', 'Endkontrolle'],
+      guarantee: '2 Jahre Gewährleistung',
       rating: 5.0,
       reviews: 312,
-      beforeAfter: { before: '/images/13.webp', after: '/images/14.webp' },
-      testimonial: '"Endlich jemand, der versteht. Danke!" - Michael R.'
+      beforeAfter: { before: '/images/11.webp', after: '/images/12.webp' },
+      testimonial: '"Wie neu gestrichen! Perfekt!" - Michael R.'
     }
   ], []);
 
@@ -350,7 +350,7 @@ const Services = React.memo(() => {
                 <div 
                   key={index}
                   data-index={index}
-                  className={`service-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform ${
+                  className={`service-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform flex flex-col ${
                     isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                   }`}
                   style={{ 
@@ -372,18 +372,19 @@ const Services = React.memo(() => {
                   </div>
                   
                   {/* Content */}
-                  <div className="p-4 sm:p-6">
+                  <div className="p-4 sm:p-6 flex flex-col flex-1">
                     {/* Title */}
                     <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-3">
                       {service.title}
                     </h3>
                     
-
+                    {/* Spacer to push button to bottom */}
+                    <div className="flex-1"></div>
                     
                     {/* Details Button */}
                     <button 
                       onClick={() => setSelectedService(index)}
-                      className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center text-sm sm:text-base"
+                      className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center text-sm sm:text-base mt-auto"
                     >
                       Details
                       <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
@@ -427,16 +428,18 @@ const Services = React.memo(() => {
                   ))}
                 </ul>
                 
-                <button 
-                  onClick={() => setSelectedService(index)}
-                  className={`w-full py-2 sm:py-3 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base ${
+                <a 
+                  href={`https://wa.me/4917670211430?text=${encodeURIComponent(`Hallo! Ich interessiere mich für das Paket "${pkg.name}" (Sparen Sie ${pkg.savings}):\n\n${pkg.services.map(service => `• ${service}`).join('\n')}\n\nKönnen Sie mir ein Angebot erstellen?`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-2 sm:py-3 rounded-lg font-semibold transition-colors duration-200 text-sm sm:text-base inline-block text-center ${
                     pkg.popular
                       ? 'bg-blue-600 text-white hover:bg-blue-700'
                       : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                   }`}
                 >
                   Paket wählen
-                </button>
+                </a>
               </div>
             ))}
           </div>

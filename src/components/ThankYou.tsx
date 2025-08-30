@@ -18,7 +18,7 @@ const ThankYou: React.FC = () => {
         
         <div className="bg-green-50 rounded-lg p-4 mb-6">
           <p className="text-green-800 text-sm">
-            Wir werden uns innerhalb von 24 Stunden bei Ihnen melden und Ihnen ein kostenloses Angebot für die Entrümpelung unterbreiten.
+            Wir werden uns innerhalb von 60 Minuten bei Ihnen melden und Ihnen ein kostenloses Angebot für die Entrümpelung unterbreiten.
           </p>
         </div>
         

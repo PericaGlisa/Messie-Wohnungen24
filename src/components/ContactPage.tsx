@@ -68,14 +68,23 @@ const ContactPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:+4917670211430"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
+                onClick={(e) => {
+                  // For desktop users, show the phone number
+                  if (!navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+                    e.preventDefault();
+                    alert('Telefonnummer: +49 176 70211430\n\nKopieren Sie diese Nummer und rufen Sie uns an!');
+                  }
+                }}
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Phone className="w-5 h-5" />
                 Jetzt anrufen
               </a>
               <a
                 href="https://wa.me/4917670211430"
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
@@ -114,12 +123,35 @@ const ContactPage: React.FC = () => {
                     {method.highlight}
                   </span>
                 </div>
-                <a
-                  href={method.link}
-                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
-                >
-                  {method.action}
-                </a>
+                {method.link.startsWith('#') ? (
+                  <button
+                    onClick={() => {
+                      const element = document.querySelector(method.link);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 cursor-pointer"
+                  >
+                    {method.action}
+                  </button>
+                ) : (
+                  <a
+                    href={method.link}
+                    target={method.link.includes('wa.me') ? '_blank' : undefined}
+                    rel={method.link.includes('wa.me') ? 'noopener noreferrer' : undefined}
+                    onClick={(e) => {
+                      // For desktop users and tel: links, show the phone number
+                      if (method.link.startsWith('tel:') && !navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+                        e.preventDefault();
+                        alert('Telefonnummer: +49 176 70211430\n\nKopieren Sie diese Nummer und rufen Sie uns an!');
+                      }
+                    }}
+                    className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 cursor-pointer"
+                  >
+                    {method.action}
+                  </a>
+                )}
               </div>
             ))}
           </div>

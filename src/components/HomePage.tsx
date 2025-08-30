@@ -6,6 +6,7 @@ import FAQ from './FAQ';
 import Testimonials from './Testimonials';
 import StatisticsSection from './StatisticsSection';
 import VirtualizedSuccessStories from './VirtualizedSuccessStories';
+import RegionsSection from './RegionsSection';
 import ContactForm from './ContactForm';
 
 const HomePage: React.FC = () => {
@@ -117,6 +118,8 @@ const HomePage: React.FC = () => {
       </Suspense>
       
       {/* Contact Form Section */}
+      <RegionsSection />
+      
       <section id="contact-form" className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">

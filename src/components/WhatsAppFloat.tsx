@@ -4,11 +4,11 @@ import { Phone, MessageSquare } from 'lucide-react';
 
 const WhatsAppFloat = () => {
   return createPortal(
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-4 sm:gap-6 z-[10001]">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col gap-4 sm:gap-6 z-50 pointer-events-none">
       {/* Phone Call Button */}
       <a
         href="tel:+4917670211430"
-        className="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center"
+        className="bg-blue-600 hover:bg-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center pointer-events-auto"
         aria-label="Telefon Kontakt"
       >
         <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -23,7 +23,7 @@ const WhatsAppFloat = () => {
         href="https://wa.me/4917670211430?text=Hallo,%20ich%20benötige%20diskrete%20Hilfe%20bei%20einer%20Wohnungsräumung"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-green-500 hover:bg-green-600 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center"
+        className="bg-green-500 hover:bg-green-600 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center pointer-events-auto"
         aria-label="WhatsApp Kontakt"
       >
         {/* WhatsApp SVG Icon */}
@@ -39,7 +39,7 @@ const WhatsAppFloat = () => {
       {/* Contact Form Button */}
       <a
         href="#contact-form"
-        className="bg-orange-600 hover:bg-orange-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center"
+        className="bg-orange-600 hover:bg-orange-700 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 group min-w-[44px] min-h-[44px] flex items-center justify-center pointer-events-auto"
         aria-label="Kontakt Formular"
       >
         <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />

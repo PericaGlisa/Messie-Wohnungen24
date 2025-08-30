@@ -46,7 +46,7 @@ const FAQ = () => {
     },
     {
       question: 'Was ist alles in Ihren Leistungen enthalten?',
-      answer: 'Unser Service umfasst: Vollständige Entrümpelung, fachgerechte Entsorgung, Grundreinigung, auf Wunsch Tiefenreinigung und Desinfektion. Kleinere Reparaturen und Renovierungsarbeiten können ebenfalls durchgeführt werden.',
+      answer: 'Unser Service umfasst: Vollständige Entrümpelung und Abtransport von Sperrmüll, Tiefen- und Spezialreinigung aller Oberflächen, Desinfektion der Räume für absolute Hygiene, Geruchsneutralisation, Entfernung alter Böden oder gründliche Reinigung der bestehenden sowie Malerarbeiten.',
       category: 'services',
       icon: CheckCircle,
       testimonial: '"Alles aus einer Hand - von der Entrümpelung bis zur Endreinigung." - Julia B.',

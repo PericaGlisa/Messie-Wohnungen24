@@ -307,7 +307,7 @@ html {
 /* Optimize frequently animated elements */
 .service-card,
 [data-step] {
-  contain: layout style paint;
+  /* Removed contain property to allow button interactions */
   will-change: transform, opacity;
 }
 

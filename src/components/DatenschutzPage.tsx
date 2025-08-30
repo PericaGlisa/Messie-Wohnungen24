@@ -1,27 +1,38 @@
 import React, { useEffect } from 'react';
+import { Shield } from 'lucide-react';
 
 const DatenschutzPage: React.FC = () => {
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = 'Datenschutzerklärung - Messie-Wohnungen24.de';
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
-              Datenschutzerklärung
-            </h1>
-            <p className="text-xl text-center text-blue-100 max-w-3xl mx-auto">
-              Informationen zum Umgang mit Ihren persönlichen Daten
-            </p>
+        <section className="bg-gradient-to-br from-blue-700 via-blue-600 to-blue-700 text-white py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="flex justify-center mb-6">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                  <Shield className="w-12 h-12 text-white" />
+                </div>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                Datenschutzerklärung
+              </h1>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+                Informationen zum Umgang mit Ihren persönlichen Daten
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* Content Section */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <section className="py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
+              <div className="prose prose-lg max-w-none">
             
             {/* Section 1 */}
             <section className="mb-8">
@@ -136,6 +147,8 @@ const DatenschutzPage: React.FC = () => {
             </section>
           </div>
         </div>
+      </div>
+      </section>
     </div>
   );
 };

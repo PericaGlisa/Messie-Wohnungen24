@@ -62,12 +62,7 @@ const AboutUsPage: React.FC = () => {
     "Übergabe der Räume in einwandfrei sauberem und sicheren Zustand"
   ];
 
-  const additionalServices = [
-    "Entrümpelung und Auflösung ganzer Haushalte",
-    "Räumung von Kellern, Garagen und Dachböden",
-    "Abtransport großer Geräte und Möbelstücke",
-    "Grundreinigung und Vorbereitung von Wohnungen oder Häusern zur weiteren Nutzung oder Vermietung"
-  ];
+
 
   return (
     <div id="ueber-uns" className="min-h-screen bg-gray-50">
@@ -79,19 +74,29 @@ const AboutUsPage: React.FC = () => {
               Über uns – Messie-Wohnungen24
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-4xl mx-auto">
-              Ihr Partner für Reinigung und Entrümpelung in Frankfurt und in ganz Deutschland
-            </p>
+                Diskret. Gründlich. Sicher.<br/>
+                "Wir geben Ihrer Wohnung den Wert zurück."
+              </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:+4917670211430"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
+                onClick={(e) => {
+                  // For desktop users, show the phone number
+                  if (!navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+                    e.preventDefault();
+                    alert('Telefonnummer: +49 176 70211430\n\nKopieren Sie diese Nummer und rufen Sie uns an!');
+                  }
+                }}
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Phone className="w-5 h-5" />
                 Jetzt anrufen
               </a>
               <a
                 href="https://wa.me/4917670211430"
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp
@@ -110,16 +115,25 @@ const AboutUsPage: React.FC = () => {
                 Erfahrung und Vertrauen seit Jahren
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                Wir sind ein erfahrenes Unternehmen mit Sitz in Frankfurt am Main, spezialisiert auf die Reinigung und Entrümpelung aller Arten von Objekten – von einfachen Wohnungen und Häusern bis hin zu besonders anspruchsvollen Fällen wie Messie-Wohnungen.
+                Wir sind ein spezialisiertes Unternehmen mit Sitz in Frankfurt am Main, das sich auf die Räumung und vollständige Wiederherstellung von Messie-Wohnungen und -Häusern spezialisiert hat.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                Unser Team arbeitet diskret, zuverlässig und schnell, mit vollem Verständnis für die Situation, in der sich unsere Kunden befinden.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                Wir wissen, dass eine Messie-Wohnung nicht nur ein Raum voller Dinge ist, sondern auch eine sensible Lebensgeschichte. Deshalb behandeln wir jeden Auftrag mit Respekt und Sorgfalt, damit die Wohnung wieder zu einem sicheren und sauberen Ort für einen neuen Anfang wird.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                Von uns können Sie eine gründliche Reinigung der Räume erwarten sowie zusätzliche Leistungen – Desinfektion, Beseitigung unangenehmer Gerüche, Entfernung und Entsorgung alter Böden, Malerarbeiten und Auffrischung der Wände.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Unser Team arbeitet diskret, zuverlässig und schnell, denn wir wissen, dass eine Entrümpelung nicht nur eine logistische, sondern auch eine emotionale Herausforderung ist. Deshalb behandeln wir jede Wohnung mit Respekt und Verständnis.
+                Unser Ziel ist es, Ihre Wohnung in einen geordneten, sicheren und schönen Zustand zurückzuführen, bereit für ein neues Leben und eine sorgenfreie Zukunft.
               </p>
             </div>
             <div className="relative">
               <div className="bg-blue-100 rounded-2xl p-8">
                 <LazyImage
-                  src="/images/2.webp"
+                  src="/images/24.webp"
                   alt="Unser professionelles Team"
                   className="w-full h-64 object-cover rounded-lg"
                   loading="lazy"
@@ -196,7 +210,7 @@ const AboutUsPage: React.FC = () => {
             <div className="relative">
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <LazyImage
-                  src="/images/1.webp"
+                  src="/images/23.webp"
                   alt="Messie-Wohnung vor der Reinigung"
                   className="w-full h-64 object-cover rounded-lg"
                   loading="lazy"
@@ -210,35 +224,6 @@ const AboutUsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Additional Services */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Zusätzliche Leistungen
-            </h2>
-            <p className="text-xl text-gray-600">
-              Unser Komplettservice für alle Ihre Bedürfnisse
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {additionalServices.map((service, index) => (
-              <div
-                key={index}
-                className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500"
-              >
-                <div className="flex items-center">
-                  <svg className="w-6 h-6 text-blue-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-gray-800 font-medium">{service}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Promise Section */}
       <section className="py-16 bg-gradient-to-br from-green-50 to-blue-50">

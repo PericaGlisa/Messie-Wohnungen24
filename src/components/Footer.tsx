@@ -6,6 +6,8 @@ import { Phone, Mail, MapPin, MessageCircle, Shield, CheckCircle, Star, Clock, U
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [newsletterStatus, setNewsletterStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const location = useLocation();
 
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -17,11 +19,40 @@ const Footer = () => {
     // If not on home page, let the Link component handle navigation normally
   };
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter signup
-    console.log('Newsletter signup:', email);
-    setEmail('');
+    
+    if (!email || !email.includes('@')) {
+      setNewsletterStatus('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setNewsletterStatus('');
+
+    try {
+      const response = await fetch('/.netlify/functions/newsletter-signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setNewsletterStatus('Erfolgreich angemeldet! Prüfen Sie Ihre E-Mail.');
+        setEmail('');
+      } else {
+        setNewsletterStatus(data.error || 'Ein Fehler ist aufgetreten.');
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      setNewsletterStatus('Verbindungsfehler. Bitte versuchen Sie es später erneut.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const scrollToTop = () => {
@@ -40,7 +71,7 @@ const Footer = () => {
     <>
     <footer className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white py-12">
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0" style={{
           backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)',
           backgroundSize: '20px 20px'
@@ -184,15 +215,26 @@ const Footer = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Ihre E-Mail"
-                    className="w-full px-3 py-2 bg-gray-700 text-white text-sm rounded border border-gray-600 focus:border-blue-400 focus:outline-none"
+                    disabled={isSubmitting}
+                    className="w-full px-3 py-2 bg-gray-700 text-white text-sm rounded border border-gray-600 focus:border-blue-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white px-3 py-2 text-sm rounded hover:bg-blue-700 transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 text-white px-3 py-2 text-sm rounded hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Anmelden
+                    {isSubmitting ? 'Wird gesendet...' : 'Anmelden'}
                   </button>
                 </form>
+                {newsletterStatus && (
+                  <p className={`text-xs mt-2 ${
+                    newsletterStatus.includes('Erfolgreich') 
+                      ? 'text-green-400' 
+                      : 'text-red-400'
+                  }`}>
+                    {newsletterStatus}
+                  </p>
+                )}
                 <p className="text-xs text-gray-400 mt-1">Tipps & Neuigkeiten</p>
               </div>
             </div>
@@ -214,34 +256,34 @@ const Footer = () => {
                 </div>
               </div>
               
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-4 h-4 text-blue-600" />
+              <div className="space-y-4">
+                <div>
+                  <Phone className="w-6 h-6 text-blue-600 mb-2" />
                   <div>
-                    <a href="tel:+4917670211430" className="text-gray-300 hover:text-white transition-colors font-semibold">
+                    <a href="tel:+4917670211430" className="text-gray-300 hover:text-white transition-colors font-semibold block">
                       +49 176 70211430
                     </a>
                     <div className="text-xs text-gray-400">Diskret anrufen</div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <MessageCircle className="w-4 h-4 text-green-400" />
+                <div>
+                  <MessageCircle className="w-6 h-6 text-green-400 mb-2" />
                   <div>
                     <a 
                       href="https://wa.me/4917670211430"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-white transition-colors font-semibold"
+                      className="text-gray-300 hover:text-white transition-colors font-semibold block"
                     >
                       WhatsApp
                     </a>
                     <div className="text-xs text-gray-400">Schreiben Sie uns per WhatsApp</div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-4 h-4 text-blue-400" />
+                <div>
+                  <Mail className="w-6 h-6 text-blue-400 mb-2" />
                   <div>
-                    <a href="mailto:info@messie-wohnungen24.de" className="text-gray-300 hover:text-white transition-colors font-semibold">
+                    <a href="mailto:info@messie-wohnungen24.de" className="text-gray-300 hover:text-white transition-colors font-semibold block">
                       info@messie-wohnungen24.de
                     </a>
                     <div className="text-xs text-gray-400">Ihre Anfrage wird innerhalb von 60 Minuten bearbeitet</div>
@@ -302,9 +344,9 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex space-x-6 text-sm text-gray-300 mb-4 md:mb-0">
-              <a href="#impressum" className="hover:text-white transition-colors">Impressum</a>
-              <a href="#datenschutz" className="hover:text-white transition-colors">Datenschutz</a>
-              <a href="#agb" className="hover:text-white transition-colors">AGB</a>
+              <Link to="/impressum" className="hover:text-white transition-colors">Impressum</Link>
+              <Link to="/datenschutz" className="hover:text-white transition-colors">Datenschutz</Link>
+              <Link to="/agb" className="hover:text-white transition-colors">AGB</Link>
             </div>
             <div className="text-sm text-gray-400 text-center md:text-left">
               <div className="flex flex-col items-center md:flex-row md:items-center md:justify-start space-y-1 md:space-y-0 md:space-x-2">

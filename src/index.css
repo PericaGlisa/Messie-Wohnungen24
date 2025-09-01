@@ -1,0 +1,382 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optimized animations for better performance */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translate3d(30px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale3d(0.9, 0.9, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 1);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1);
+  }
+  70% {
+    transform: scale3d(0.9, 0.9, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Animation classes with GPU acceleration */
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+  will-change: opacity;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  will-change: transform, opacity;
+}
+
+/* Staggered animation delays */
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+
+/* Optimized Emergency Hotline Animations - Reduced complexity for better performance */
+@keyframes subtle-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+@keyframes phone-ring {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+.emergency-hotline {
+  animation: subtle-pulse 2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.emergency-hotline:hover {
+  animation: phone-ring 0.5s ease-in-out;
+}
+
+.phone-icon {
+  animation: phone-ring 2s infinite;
+  will-change: transform;
+}
+
+.hotline-text {
+  animation: text-flash 2s infinite;
+  will-change: opacity;
+}
+
+/* Hover scale utilities */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+@layer base {
+  body {
+    font-family: 'Open Sans', sans-serif;
+    /* Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+  
+  .font-serif {
+    font-family: 'Merriweather', serif;
+  }
+  
+  /* Optimize image rendering and loading */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* Smooth loading transition */
+    transition: opacity 0.3s ease-in-out;
+    /* Improve layout performance */
+    contain: layout;
+    will-change: auto;
+  }
+  
+  /* Prevent layout shifts */
+  img, video {
+    height: auto;
+    max-width: 100%;
+  }
+  
+  /* Progressive image loading states */
+  img[data-src] {
+    opacity: 0.7;
+    filter: blur(2px);
+  }
+  
+  img.loaded {
+    opacity: 1;
+    filter: none;
+  }
+  
+  /* Optimize image containers */
+  .image-container {
+    contain: layout style paint;
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+  
+  /* Performance optimized utility classes */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  .contain-layout {
+    contain: layout;
+  }
+  
+  .contain-paint {
+    contain: paint;
+  }
+  
+  .contain-strict {
+    contain: strict;
+  }
+  
+  /* Lazy loading placeholder optimization */
+  img[src*="data:image/svg+xml"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Performance optimizations */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  .emergency-hotline,
+  .phone-icon,
+  .hotline-text {
+    animation: none;
+  }
+  
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-scale-in,
+  .animate-bounce-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* Disable all transition delays */
+  * {
+    animation-delay: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* GPU acceleration for better performance */
+.emergency-hotline,
+.phone-icon,
+.hotline-text,
+.animate-fade-in-up,
+.animate-fade-in,
+.animate-slide-in-left,
+.animate-slide-in-right,
+.animate-scale-in,
+.animate-bounce-in {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize animation performance */
+.animate-fade-in-up,
+.animate-fade-in,
+.animate-slide-in-left,
+.animate-slide-in-right,
+.animate-scale-in,
+.animate-bounce-in {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent layout shifts during animations */
+[data-section] {
+  contain: layout style;
+}
+
+/* Optimize frequently animated elements */
+.service-card,
+[data-step] {
+  /* Removed contain property to allow button interactions */
+  will-change: transform, opacity;
+}
+
+/* Reset will-change after animation completes */
+.animate-fade-in-up.animation-complete,
+.animate-fade-in.animation-complete,
+.animate-slide-in-left.animation-complete,
+.animate-slide-in-right.animation-complete,
+.animate-scale-in.animation-complete,
+.animate-bounce-in.animation-complete {
+  will-change: auto;
+}
+
+/* Optimize frequently animated elements */
+.group:hover img,
+.hover\:scale-105:hover,
+.hover\:scale-110:hover {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize scrolling performance */
+.overflow-y-auto,
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Reduce paint complexity */
+.bg-gradient-to-r,
+.bg-gradient-to-t,
+.bg-gradient-to-br {
+  will-change: auto;
+}
+
+/* Optimize backdrop filters */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  will-change: backdrop-filter;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4e97c0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d7a9a;
+}
+
+/* Marquee animation for promotional banner */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}

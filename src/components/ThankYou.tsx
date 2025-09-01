@@ -45,7 +45,7 @@ const ThankYou: React.FC = () => {
             Haben Sie Fragen? Rufen Sie uns an:
           </p>
           <p className="text-blue-600 font-semibold">
-            +49 1551 0333 444
+            +49 176 70211430
           </p>
         </div>
       </div>

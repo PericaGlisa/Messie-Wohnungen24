@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { Phone, Mail, MessageCircle, MapPin, Clock, CheckCircle, Star } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import ContactForm from './ContactForm';
 
 const ContactPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const region = searchParams.get('region');
+  const city = searchParams.get('city');
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = 'Kontakt - Messie-Wohnungen24.de';
@@ -208,7 +213,7 @@ const ContactPage: React.FC = () => {
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ContactForm />
+          <ContactForm region={region} city={city} />
         </div>
       </section>
 
@@ -227,7 +232,7 @@ const ContactPage: React.FC = () => {
               className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
             >
               <Phone className="w-5 h-5" />
-              +49 151 234 567 89
+              +49 176 70211430
             </a>
             <a
               href="https://wa.me/4917670211430"
@@ -247,7 +252,7 @@ const ContactPage: React.FC = () => {
             <div>
               <Phone className="w-8 h-8 text-blue-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">Telefon</h3>
-              <p className="text-gray-300">+49 151 234 567 89</p>
+              <p className="text-gray-300">+49 176 70211430</p>
               <p className="text-sm text-gray-400 mt-1">24/7 Erreichbar</p>
             </div>
             <div>

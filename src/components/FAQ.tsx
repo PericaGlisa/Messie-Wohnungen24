@@ -13,7 +13,8 @@ const FAQ = () => {
       icon: Shield,
       testimonial: '"Das Team war so diskret, dass nicht einmal meine Nachbarn etwas bemerkt haben." - Maria K.',
       relatedQuestions: [1, 7],
-      hasContactButton: false
+      hasContactButton: true,
+      contactText: 'Diskrete Beratung anfragen'
     },
     {
       question: 'Wie schnell können Sie reagieren?',
@@ -32,7 +33,8 @@ const FAQ = () => {
       icon: Clock,
       testimonial: '"Meine 70m² Wohnung war in 2 Tagen komplett entrümpelt und gereinigt." - Sandra M.',
       relatedQuestions: [1, 4],
-      hasContactButton: false
+      hasContactButton: true,
+      contactText: 'Zeitplan besprechen'
     },
     {
       question: 'Was kostet eine Entrümpelung?',
@@ -51,7 +53,8 @@ const FAQ = () => {
       icon: CheckCircle,
       testimonial: '"Alles aus einer Hand - von der Entrümpelung bis zur Endreinigung." - Julia B.',
       relatedQuestions: [5, 10],
-      hasContactButton: false
+      hasContactButton: true,
+      contactText: 'Vollservice anfragen'
     },
     {
       question: 'Was passiert mit persönlichen Gegenständen?',
@@ -60,7 +63,8 @@ const FAQ = () => {
       icon: Shield,
       testimonial: '"Alle wichtigen Dokumente wurden sorgfältig aussortiert und mir übergeben." - Michael K.',
       relatedQuestions: [0, 4],
-      hasContactButton: false
+      hasContactButton: true,
+      contactText: 'Beratung zu persönlichen Gegenständen'
     },
     {
       question: 'In welchen Gebieten arbeiten Sie?',
@@ -109,7 +113,8 @@ const FAQ = () => {
       icon: Award,
       testimonial: '"Das Gefühl der Sicherheit durch die Versicherung war sehr beruhigend." - Klaus M.',
       relatedQuestions: [0, 7],
-      hasContactButton: false
+      hasContactButton: true,
+      contactText: 'Versicherungsdetails erfragen'
     },
     {
       question: 'Wie umweltfreundlich entsorgen Sie?',
@@ -118,7 +123,8 @@ const FAQ = () => {
       icon: CheckCircle,
       testimonial: '"Toll zu wissen, dass meine alten Möbel gespendet wurden." - Petra H.',
       relatedQuestions: [4, 5],
-      hasContactButton: false
+      hasContactButton: true,
+      contactText: 'Umweltfreundliche Entsorgung besprechen'
     }
   ];
 
@@ -138,7 +144,10 @@ const FAQ = () => {
 
   const handleContactClick = (contactText: string) => {
     // Scroll to contact section or open contact modal
-    const contactSection = document.getElementById('contact');
+    let contactSection = document.getElementById('kontakt');
+    if (!contactSection) {
+      contactSection = document.getElementById('contact-form');
+    }
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }

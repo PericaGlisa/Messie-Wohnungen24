@@ -10,6 +10,13 @@ const Process = () => {
   const [hoveredComparison, setHoveredComparison] = useState(null);
   const [showComparisonDetails, setShowComparisonDetails] = useState(false);
 
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('kontakt');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     const observer = createAnimationObserver(
       (entries) => {
@@ -360,7 +367,10 @@ const Process = () => {
                   </div>
                   
                   {/* CTA Button */}
-                  <button className="w-full mt-4 bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                  <button 
+                    onClick={handleContactClick}
+                    className="w-full mt-4 bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                  >
                     {index === 0 ? 'Jetzt kontaktieren' : index === steps.length - 1 ? 'Termin vereinbaren' : 'Mehr erfahren'}
                   </button>
                 </div>

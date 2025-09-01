@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Send, Shield, CheckCircle, Users, Upload } from 'lucide-react';
 
-const ContactForm = () => {
+interface ContactFormProps {
+  region?: string | null;
+  city?: string | null;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ region, city }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -23,6 +28,12 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
+
+  useEffect(() => {
+    if (city) {
+      setFormData(prev => ({ ...prev, city }));
+    }
+  }, [city]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
